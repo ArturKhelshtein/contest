@@ -1,0 +1,9 @@
+.logo__container-header {
+	width: 200px;
+	opacity: 1;
+}
+
+.logo__container-header:hover {
+	opacity: 0.6;
+	cursor: pointer;
+}

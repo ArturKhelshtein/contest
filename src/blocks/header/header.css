@@ -1,0 +1,27 @@
+.header {
+	margin: 0 auto 42px auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap:5px;
+	padding-top: 28px;
+	padding-left: 30px;
+	padding-right: 30px;
+	box-sizing: border-box;
+}
+
+@media (min-width: 360px) {
+	.header {
+		gap:10px;
+	}
+}
+
+@media (min-width: 1000px) {
+	.header {
+		gap:20px;
+		margin: 0 200px 40px 200px;
+		padding-top: 45px;
+		padding-left: 0;
+		padding-right: 0;
+	}
+}

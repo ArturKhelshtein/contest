@@ -1,0 +1,8 @@
+.search {
+	min-height: 30px;
+		margin-bottom: 27px;
+		display: grid;
+		grid-template-columns: 1fr 40px 40px;
+		gap: 10px;
+		box-sizing: border-box;
+}

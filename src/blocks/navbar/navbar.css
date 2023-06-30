@@ -1,0 +1,15 @@
+.navbar {
+	margin-bottom: 27px;
+	display: flex;
+	flex-direction: column;
+	align-self: flex-start;
+	align-items: start;
+	box-sizing: border-box;
+}
+
+@media (min-width: 360px) {
+	.navbar {
+		flex-direction: row;
+		align-self: center;
+	}
+}
