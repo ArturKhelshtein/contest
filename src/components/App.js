@@ -4,11 +4,16 @@ import api from '../utils/api';
 import Header from './Header';
 import Footer from './Footer';
 import Main from './Main';
+import ReactPaginate from 'react-paginate';
 
 function App() {
 	const [searchQuery, setSearchQuery] = React.useState('');
 	const [cardList, setCardList] = React.useState([]);
 	const [isSubmitted, setIsSubmitted] = React.useState(null);
+
+	const [pageCurrent, setPageCurrent] = React.useState(0)
+	const [pageCount, setPageCount] = React.useState([]);
+	const [cardsPerPage, setCardsPerPage] = React.useState(12)
 
 	React.useEffect(() => {
 		if (isSubmitted) {
@@ -22,27 +27,15 @@ function App() {
 						author: card.user,
 					}))
 				);
+				setPageCount(Math.ceil(response.pagination.total_count / response.pagination.count));
 				setIsSubmitted(false);
 				setSearchQuery('');
 			});
 		}
 	}, [searchQuery, isSubmitted]);
 
-	// function search(query) {
-	// 	api.searchGif(query).then((response) =>
-	// 		setCardList(
-	// 			response.data.map((card) => ({
-	// 				id: card.id,
-	// 				src: card.url,
-	// 				alt: card.title,
-	// 				title: card.title,
-	// 				author: card.user,
-	// 			}))
-	// 		)
-	// 	);
-	// }
+	// pageSelected: page.offset + 1,
 
-	// search('apple');
 
 	function handleSubmitSearch(event) {
 		event.preventDefault();
@@ -58,6 +51,10 @@ function App() {
 				searchQuery={searchQuery}
 				cardList={cardList}
 				isSubmitted={isSubmitted}
+				pageCount={pageCount}
+				pageCurrent={pageCurrent}
+				setPageCurrent={setPageCurrent}
+				cardsPerPage={cardsPerPage}
 			/>
 			<Footer />
 		</div>

@@ -8,7 +8,11 @@ function Main({
 	searchQuery,
 	cardList,
 	isSubmitted,
- }) {
+	pageCount,
+	pageCurrent,
+	setPageCurrent,
+	cardsPerPage
+}) {
 	return (
 		<main className="main">
 			<Search
@@ -24,7 +28,12 @@ function Main({
 					cardList.map((card) => <Card key={card.id} {...card} />)
 				)}
 			</section>
-			 <Pagination />
+			<Pagination
+				pageCount={pageCount}
+				pageCurrent={pageCurrent}
+				setPageCurrent={setPageCurrent}
+				cardsPerPage={cardsPerPage}
+			/>
 		</main>
 	);
 }

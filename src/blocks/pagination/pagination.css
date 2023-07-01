@@ -1,7 +1,17 @@
 .pagination {
+	max-width: 100%;
 	margin: 0;
 	padding: 0;
 	display: flex;
 	justify-content: center;
 	column-gap: 10px;
+	overflow: hidden;
 }
+
+/* .pagination {
+	max-width: 100%;
+	display: grid;
+	grid-template-columns: 15px 1fr 15px;
+	align-content: center;
+	column-gap: 10px;
+} */
