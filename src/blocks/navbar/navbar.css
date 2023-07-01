@@ -1,9 +1,10 @@
 .navbar {
-	margin-bottom: 27px;
+	margin-left: 30px;
 	display: flex;
 	flex-direction: column;
 	align-self: flex-start;
 	align-items: start;
+	gap: 5px;
 	box-sizing: border-box;
 }
 

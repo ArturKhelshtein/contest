@@ -8,6 +8,7 @@
 				placeholder={placeholder}
 				onChange={(e) => handleChangeImput(e.target.value)}
 				value={searchQuery}
+				autoComplete="off"
 				required
 			></input>
 			<button

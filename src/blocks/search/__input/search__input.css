@@ -1,6 +1,6 @@
 .search__input {
 	margin: 0;
-	padding-bottom: 5px;
+	padding-bottom: 2px;
 	box-sizing: border-box;
 	width: 100%;
 	border: none;
@@ -13,6 +13,6 @@
 }
 
 .search__input:focus {
-	outline-color: #7fa5f4;
+	outline-color: #767676;
 	cursor: text;
 }

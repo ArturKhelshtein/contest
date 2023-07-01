@@ -24,7 +24,7 @@ function Main({
 					cardList.map((card) => <Card key={card.id} {...card} />)
 				)}
 			</section>
-			{isSubmitted && <Pagination />}
+			 <Pagination />
 		</main>
 	);
 }
