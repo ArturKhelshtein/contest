@@ -1,7 +1,8 @@
 class Api {
-	constructor({ baseUrl, api_key }) {
+	constructor({ baseUrl, api_key, headers }) {
 		this._baseUrl = baseUrl;
 		this._api_key = api_key;
+		this._headers = headers;
 	}
 	_checkResponse(result) {
 		return result.ok
@@ -9,26 +10,46 @@ class Api {
 			: Promise.reject(`Ошибка: ${result.status}`);
 	}
 
-	_request(endpoint) {
-		return fetch(`${this._baseUrl}${endpoint}`).then(this._checkResponse);
+	_request(endpoint, options) {
+		return fetch(`${this._baseUrl}${endpoint}`, options).then(
+			this._checkResponse
+		);
 	}
 
 	trendGif() {
-		return this._request(`/v1/gifs/trending?api_key=${this._api_key}&limit=12`);
+		return this._request(
+			`/v1/gifs/trending?api_key=${this._api_key}&limit=12`,
+			{
+				method: 'GET',
+				headers: this._headers,
+			}
+		);
 	}
 
 	searchGif(query) {
-		return this._request(`/v1/gifs/search?api_key=${this._api_key}&q=${query}&limit=12`);
+		return this._request(
+			`/v1/gifs/search?api_key=${this._api_key}&q=${query}&limit=12`,
+			{
+				method: 'GET',
+				headers: this._headers,
+			}
+		);
 	}
 
 	randomGif() {
-		return this._request(`v1/gifs/random?api_key=${this._api_key}&limit=1`);
+		return this._request(`v1/gifs/random?api_key=${this._api_key}`, {
+			method: 'GET',
+			headers: this.headers,
+		});
 	}
 }
 
 const api = new Api({
 	baseUrl: 'https://api.giphy.com',
 	api_key: '3nWXGvzZVDGqAQlW9AiBmgqdytC8XMyS',
+	headers: {
+		'Content-Type': 'application/json',
+	},
 });
 
 export default api;
