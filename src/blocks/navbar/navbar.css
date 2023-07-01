@@ -11,5 +11,6 @@
 	.navbar {
 		flex-direction: row;
 		align-self: center;
+		gap: 25px
 	}
 }

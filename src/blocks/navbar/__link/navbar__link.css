@@ -1,6 +1,6 @@
 .navbar__link {
 	display: flex;
-	padding: 10px 0 0 0;
+	padding-top: 10px;
 	background-color: transparent;
 	border: none;
 	color: #fff;
@@ -15,7 +15,7 @@
 
 @media (min-width: 360px) {
 	.navbar__link {
-		padding: 10px 0 0 24px;
+		margin-bottom: 24px;
 	}
 }
 

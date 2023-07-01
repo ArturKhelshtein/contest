@@ -12,7 +12,7 @@ function App() {
 					<img className="logo__img" src={logo} alt="logo" />
 				</Link>
 				<nav className="navbar">
-					<Link to="/" className="navbar__link">
+					<Link to="/" className="navbar__link navbar__link_selected">
 						Поиск
 					</Link>
 					<Link to="/" className="navbar__link">
@@ -49,6 +49,10 @@ function App() {
 						<h2 className="card__name">название карточки</h2>
 					</article>
 				</section>
+				<ol className="pagination">
+						<li className='pagination__element pagination__element_selected'>1</li>
+						<li className='pagination__element'>2</li>
+					</ol>
 			</main>
 			<footer className="footer">
 				<p className='footer__copyright'>© {date.getFullYear()} Contest project by Artur Khelshtein & Anastasiya Pashkova</p>

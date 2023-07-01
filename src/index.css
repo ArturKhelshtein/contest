@@ -9,7 +9,7 @@
 @import url(./blocks/logo/__img/logo__img.css);
 @import url(./blocks/navbar/navbar.css);
 @import url(./blocks/navbar/__link/navbar__link.css);
-@import url(./blocks/navbar/__link/navbar__link_shadow.css);
+@import url(./blocks/navbar/__link/navbar__link_selected.css);
 @import url(./blocks/navbar/__container/_type/navbar__container_type_desktop.css);
 @import url(./blocks/navbar/__container/_type/navbar__container_type_mobile.css);
 @import url(./blocks/navbar/__container/_type/navbar__container_type_mobile-unwrapped.css);
@@ -24,6 +24,10 @@
 @import url(./blocks/card/__container/card__container.css);
 @import url(./blocks/card/__img/card__img.css);
 @import url(./blocks/card/__name/card__name.css);
+
+@import url(./blocks/pagination/pagination.css);
+@import url(./blocks/pagination/__element/pagination__element.css);
+@import url(./blocks/pagination/__element/pagination__element_selected.css);
 
 @import url(./blocks/footer/footer.css);
 @import url(./blocks/footer/__copyright/footer__copyright.css);
