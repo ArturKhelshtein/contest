@@ -1,10 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import api from '../utils/api';
 import logo from '../image/logo/logo.gif';
 
 const date = new Date();
 
 function App() {
+	const [searchQuery, setSearchQuery] = React.useState('');
+	const [cards, setCards] = React.useState([]);
+	const [isLoading, setLoading] = React.useState(false);
+
+	// React.useEffect(() => {
+	// 	setLoading(true);
+	// 	api.searchGif(searchQuery).then((data) => console.log(data));
+	// }, [searchQuery]);
+
+	function trend() {
+		api.trendGif().then((data) => console.log(data));
+	}
+
+	function search(query) {
+		api.searchGif(query).then((data) => console.log(data))
+	}
+
 	return (
 		<div className="app">
 			<header className="header">
@@ -50,12 +68,17 @@ function App() {
 					</article>
 				</section>
 				<ol className="pagination">
-						<li className='pagination__element pagination__element_selected'>1</li>
-						<li className='pagination__element'>2</li>
-					</ol>
+					<li className="pagination__element pagination__element_selected">
+						1
+					</li>
+					<li className="pagination__element">2</li>
+				</ol>
 			</main>
 			<footer className="footer">
-				<p className='footer__copyright'>© {date.getFullYear()} Contest project by Artur Khelshtein & Anastasiya Pashkova</p>
+				<p className="footer__copyright">
+					© {date.getFullYear()} Contest project by Artur Khelshtein &
+					Anastasiya Pashkova
+				</p>
 			</footer>
 		</div>
 	);
