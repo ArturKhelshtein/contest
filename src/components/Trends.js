@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import api from '../utils/api';
-import Pagination from './Pagination';
 import Card from './Card';
 
 function Trends({ cardList, setCardList }) {

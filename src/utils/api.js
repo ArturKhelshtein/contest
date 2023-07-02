@@ -37,13 +37,10 @@ class Api {
 	}
 
 	randomGif() {
-		return this._request(
-			`/v1/gifs/random?api_key=${this._api_key}&tag=&rating=g`,
-			{
-				method: 'GET',
-				headers: this.headers,
-			}
-		);
+		return this._request(`/v1/gifs/random?api_key=${this._api_key}&rating=g`, {
+			method: 'GET',
+			headers: this.headers,
+		});
 	}
 }
 
