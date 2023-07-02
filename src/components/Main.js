@@ -34,7 +34,6 @@ function Main() {
 							id: card.id,
 							src: card.images.downsized.url,
 							alt: card.title,
-							title: card.title,
 							author: card.user,
 						}))
 					);

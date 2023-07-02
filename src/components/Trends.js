@@ -1,26 +1,31 @@
-import { useEffect } from 'react';
+import React from 'react';
 import api from '../utils/api';
 import Card from './Card';
 
 function Trends({ cardList, setCardList, cardsPerPage, pageCurrent }) {
-	useEffect(() => {
+
+  const [isLoading, setIsLoading] = React.useState(true);
+
+	React.useEffect(() => {
 		api.trendGif({ limit: cardsPerPage, offset: pageCurrent }).then((data) => {
 			setCardList(
 				data.data.map((card) => ({
 					id: card.id,
 					src: card.images.downsized.url,
 					alt: card.title,
-					title: card.title,
 				}))
 			);
+      setIsLoading(false);
 		});
 	}, [pageCurrent]);
 
 	return (
 		<section className="card-list">
-			{cardList.map((card) => (
-				<Card key={card.id} {...card} />
-			))}
+			{ isLoading ? (<div>Загружаю...</div>)
+      : (cardList.map((card) => (
+				  <Card key={card.id} {...card} />
+			  )))
+      }
 		</section>
 	);
 }
