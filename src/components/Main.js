@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import ReactPaginate from 'react-paginate';
 import api from '../utils/api';
-import { QueryContext } from '../context/QueryContext';
+//import { QueryContext } from '../context/QueryContext';
 import Card from './Card';
 import Search from './Search';
 import RandomCard from './RandomCard';
@@ -16,19 +16,16 @@ function Main() {
 	const [pageCurrent, setPageCurrent] = React.useState(0);
 	const [pageOffset, setPageOffset] = React.useState(0);
 	const [pageCount, setPageCount] = React.useState([]);
-	const [cardsPerPage, setCardsPerPage] = React.useState(12);
+	const [cardsPerPage, setCardsPerPage] = React.useState(3);
 	//массив со всеми номерами страниц
 	const pageNumbers = [...Array(pageCount + 1).keys()].slice(1);
-	// const searchQuery = React.useContext(QueryContext);
-
-	console.log(pageCurrent);
 
 	React.useEffect(() => {
 		if (isSubmitted) {
 			api
 				.searchGif({
 					query: searchQuery,
-					// limit: cardsPerPage,
+					limit: cardsPerPage,
 					offset: pageOffset,
 				})
 				.then((response) => {
@@ -40,11 +37,13 @@ function Main() {
 							author: card.user,
 						}))
 					);
-					setPageCount(
-						Math.ceil(
-							response.pagination.total_count / response.pagination.count
-						)
-					);
+					if (!response.data) {
+						setPageCount(
+							Math.ceil(
+								response.pagination.total_count / response.pagination.count
+							)
+						);
+					}
 					setIsSubmitted(false);
 					//setSearchQuery('');
 				});
@@ -56,11 +55,13 @@ function Main() {
 		setIsSubmitted(true);
 	}
 
-	const handlePageClick = (event) => {
+	const handlePaginationClick = (event) => {
 		setPageOffset((event.selected * cardsPerPage) % pageNumbers.length);
 		setIsSubmitted(true);
 		setPageCurrent(event.selected);
 	};
+
+	console.log(searchQuery);
 
 	return (
 		<main className="main">
@@ -68,46 +69,44 @@ function Main() {
 				<Route
 					path="/"
 					element={
-						<QueryContext.Provider value={searchQuery}>
-							<>
-								<Search
-									placeholder="Найдем GIF !!!"
-									searchQuery={searchQuery}
-									handleChangeImput={setSearchQuery}
-									handleSubmitSearch={handleSubmitSearch}
-								/>
-								<section className="card-list">
-									{isSubmitted ? (
-										<div>Загружаю...</div>
-									) : (
-										cardList.map((card) => <Card key={card.id} {...card} />)
-									)}
-								</section>
-								{Boolean(cardList[1]) ? (
-									<ReactPaginate
-										breakLabel="..."
-										nextLabel=">"
-										onPageChange={handlePageClick}
-										pageRangeDisplayed={5}
-										pageCount={pageCount}
-										previousLabel="<"
-										renderOnZeroPageCount={null}
-										className="pagination"
-										previousClassName="pagination__element"
-										pageClassName="pagination__element"
-										breakClassName="pagination__element"
-										nextClassName="pagination__element"
-										previousLinkClassName="pagination__link"
-										pageLinkClassName="pagination__link"
-										breakLinkClassName="pagination__link"
-										nextLinkClassName="pagination__link"
-										activeClassName="pagination__element_selected"
-									/>
+						<>
+							<Search
+								placeholder="Найдем GIF !!!"
+								searchQuery={searchQuery}
+								setSearchQuery={setSearchQuery}
+								handleSubmitSearch={handleSubmitSearch}
+							/>
+							<section className="card-list">
+								{isSubmitted ? (
+									<div>Загружаю...</div>
 								) : (
-									''
+									cardList.map((card) => <Card key={card.id} {...card} />)
 								)}
-							</>
-						</QueryContext.Provider>
+							</section>
+							{Boolean(cardList[1]) ? (
+								<ReactPaginate
+									breakLabel="..."
+									nextLabel=">"
+									onPageChange={handlePaginationClick}
+									pageRangeDisplayed={5}
+									pageCount={pageCount}
+									previousLabel="<"
+									renderOnZeroPageCount={null}
+									className="pagination"
+									previousClassName="pagination__element"
+									pageClassName="pagination__element"
+									breakClassName="pagination__element"
+									nextClassName="pagination__element"
+									previousLinkClassName="pagination__link"
+									pageLinkClassName="pagination__link"
+									breakLinkClassName="pagination__link"
+									nextLinkClassName="pagination__link"
+									activeClassName="pagination__element_selected"
+								/>
+							) : (
+								''
+							)}
+						</>
 					}
 				></Route>
 				<Route
@@ -124,7 +123,7 @@ function Main() {
 								<ReactPaginate
 									breakLabel="..."
 									nextLabel=">"
-									onPageChange={handlePageClick}
+									onPageChange={handlePaginationClick}
 									pageRangeDisplayed={5}
 									pageCount={pageCount}
 									previousLabel="<"

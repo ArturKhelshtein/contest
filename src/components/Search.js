@@ -1,4 +1,12 @@
-				function Search({ placeholder, searchQuery, handleChangeImput, handleSubmitSearch }) {
+function Search({
+	placeholder,
+	searchQuery,
+	setSearchQuery,
+	handleSubmitSearch,
+}) {
+	function handleInputReset() {
+		setSearchQuery('');
+	}
 	return (
 		<form className="search" onSubmit={handleSubmitSearch}>
 			<input
@@ -6,7 +14,7 @@
 				type="text"
 				name="search"
 				placeholder={placeholder}
-				onChange={(e) => handleChangeImput(e.target.value)}
+				onChange={(e) => setSearchQuery(e.target.value)}
 				value={searchQuery}
 				autoComplete="off"
 				required
@@ -15,6 +23,7 @@
 				className="search__button search__button_type_reset"
 				aria-label="сбросить поиск"
 				type="reset"
+				onClick={handleInputReset}
 			></button>
 			<button
 				className="search__button search__button_type_submit"
