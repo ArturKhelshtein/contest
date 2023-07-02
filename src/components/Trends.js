@@ -14,16 +14,14 @@ function Trends({ cardList, setCardList, cardsPerPage, pageCurrent }) {
 				}))
 			);
 		});
-	}, []);
+	}, [pageCurrent]);
 
 	return (
-		<main className="main">
-			<section className="card-list">
-				{cardList.map((card) => (
-					<Card key={card.id} {...card} />
-				))}
-			</section>
-		</main>
+		<section className="card-list">
+			{cardList.map((card) => (
+				<Card key={card.id} {...card} />
+			))}
+		</section>
 	);
 }
 
