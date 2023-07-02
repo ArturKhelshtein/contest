@@ -4,7 +4,7 @@ import Footer from './Footer';
 import Main from './Main';
 import Trends from './Trends';
 import RandomCard from './RandomCard';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 
 function App() {
 	const [cardList, setCardList] = React.useState([]);
@@ -67,6 +67,7 @@ function App() {
 					}
 				/>
 				<Route path="/random-gif" element={<RandomCard />} />
+				<Route path="*" element={<Navigate to="/" />} />
 			</Routes>
 
 			<Footer />
