@@ -15,8 +15,18 @@ class Api {
 			this._checkResponse
 		);
 	}
+	// trendGif({ limit = 12, offset }) {
+	// 	return this._request(
+	// 		//`/v1/gifs/trending?api_key=${this._api_key}&limit=${limit}&offset=${offset}`,
+	// 		`/v1/gifs/trending?api_key=${this._api_key}&limit=12`,
+	// 		{
+	// 			method: 'GET',
+	// 			headers: this._headers,
+	// 		}
+	// 	);
+	// }
 
-	trendGif() {
+	trendGif({ offset }) {
 		return this._request(
 			`/v1/gifs/trending?api_key=${this._api_key}&limit=12`,
 			{
@@ -26,9 +36,10 @@ class Api {
 		);
 	}
 
-	searchGif(query) {
+	searchGif({ query, limit = 12, offset }) {
 		return this._request(
-			`/v1/gifs/search?api_key=${this._api_key}&q=${query}&limit=12`,
+			//`/v1/gifs/search?api_key=${this._api_key}&q=${query}&limit=${limit}&offset=${offset}`,
+			`/v1/gifs/search?api_key=${this._api_key}&q=${query}&limit=12&offset=${offset}`,
 			{
 				method: 'GET',
 				headers: this._headers,
@@ -37,7 +48,7 @@ class Api {
 	}
 
 	randomGif() {
-		return this._request(`/v1/gifs/random?api_key=${this._api_key}&tag=&rating=g`, {
+		return this._request(`/v1/gifs/random?api_key=${this._api_key}&rating=g`, {
 			method: 'GET',
 			headers: this.headers,
 		});

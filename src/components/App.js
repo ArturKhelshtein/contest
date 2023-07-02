@@ -20,7 +20,11 @@ function App() {
 	React.useEffect(() => {
 		if (isSubmitted) {
 			api
-				.searchGif({ query: searchQuery, offset: pageCurrent })
+				.searchGif({
+					query: searchQuery,
+					// limit: cardsPerPage,
+					offset: pageCurrent,
+				})
 				.then((response) => {
 					setCardList(
 						response.data.map((card) => ({
@@ -71,7 +75,14 @@ function App() {
 				/>
 				<Route
 					path="/trends"
-					element={<Trends cardList={cardList} setCardList={setCardList} />}
+					element={
+						<Trends
+							cardList={cardList}
+							setCardList={setCardList}
+							cardsPerPage={cardsPerPage}
+							pageCurrent={pageCurrent}
+						/>
+					}
 				/>
 				<Route path="/random-gif" element={<RandomCard />} />
 			</Routes>

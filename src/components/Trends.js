@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import api from '../utils/api';
 import Card from './Card';
 
-function Trends({ cardList, setCardList }) {
+function Trends({ cardList, setCardList, cardsPerPage, pageCurrent }) {
 	useEffect(() => {
-		api.trendGif().then((data) => {
+		api.trendGif({ limit: cardsPerPage, offset: pageCurrent }).then((data) => {
 			setCardList(
 				data.data.map((card) => ({
 					id: card.id,
