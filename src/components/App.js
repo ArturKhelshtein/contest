@@ -7,7 +7,6 @@ import Footer from './Footer';
 import Main from './Main';
 import RandomCard from './RandomCard';
 import Trends from './Trends';
-import ReactPaginate from 'react-paginate';
 
 function App() {
 	const [searchQuery, setSearchQuery] = React.useState('');
@@ -20,26 +19,28 @@ function App() {
 
 	React.useEffect(() => {
 		if (isSubmitted) {
-			api.searchGif(searchQuery, pageCurrent).then((response) => {
-				setCardList(
-					response.data.map((card) => ({
-						id: card.id,
-						src: card.images.downsized.url,
-						alt: card.title,
-						title: card.title,
-						author: card.user,
-					}))
-				);
-				setPageCount(
-					Math.ceil(response.pagination.total_count / response.pagination.count)
-				);
-				setIsSubmitted(false);
-				//setSearchQuery('');
-			});
+			api
+				.searchGif({ query: searchQuery, offset: pageCurrent })
+				.then((response) => {
+					setCardList(
+						response.data.map((card) => ({
+							id: card.id,
+							src: card.images.downsized.url,
+							alt: card.title,
+							title: card.title,
+							author: card.user,
+						}))
+					);
+					setPageCount(
+						Math.ceil(
+							response.pagination.total_count / response.pagination.count
+						)
+					);
+					setIsSubmitted(false);
+					//setSearchQuery('');
+				});
 		}
 	}, [searchQuery, isSubmitted]);
-
-	// pageSelected: page.offset + 1,
 
 	function handleSubmitSearch(event) {
 		event.preventDefault();

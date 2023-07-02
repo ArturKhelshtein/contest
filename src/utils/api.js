@@ -16,9 +16,9 @@ class Api {
 		);
 	}
 
-	trendGif() {
+	trendGif({ limit = 12, offset }) {
 		return this._request(
-			`/v1/gifs/trending?api_key=${this._api_key}&limit=12`,
+			`/v1/gifs/trending?api_key=${this._api_key}&limit=${limit}&offset=${offset}`,
 			{
 				method: 'GET',
 				headers: this._headers,
@@ -26,9 +26,9 @@ class Api {
 		);
 	}
 
-	searchGif(query, offset) {
+	searchGif({ query, limit = 12, offset }) {
 		return this._request(
-			`/v1/gifs/search?api_key=${this._api_key}&q=${query}&limit=12&offset=${offset}`,
+			`/v1/gifs/search?api_key=${this._api_key}&q=${query}&limit=${limit}&offset=${offset}`,
 			{
 				method: 'GET',
 				headers: this._headers,
