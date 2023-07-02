@@ -6,7 +6,9 @@ function CardList({ isSubmitted, cardList }) {
 			{isSubmitted ? (
 				<div>Загружаю...</div>
 			) : (
-				cardList.map((card) => <Card key={card.id} {...card} />)
+				cardList.map((card, index) => (
+					<Card key={`${card.id}${index}`} {...card} />
+				))
 			)}
 		</section>
 	);
