@@ -1,16 +1,19 @@
 import React from 'react';
 import api from '../utils/api';
 import CardList from './CardList';
+import Pagination from './Pagination';
 
 function Trends({
+	isSubmittedTrends,
+	setIsSubmittedTrends,
 	cardList,
 	setCardList,
-	cardsPerPage,
-	pageOffset,
+	pageCount,
 	setPageCount,
+	cardsPerPage,
+	handlePaginationClick,
+	pageOffset,
 }) {
-	const [isSubmittedTrends, setIsSubmittedTrends] = React.useState(null);
-
 	React.useEffect(() => {
 		api
 			.trendGif({ limit: cardsPerPage, offset: pageOffset })
@@ -31,9 +34,17 @@ function Trends({
 				}
 				setIsSubmittedTrends(false);
 			});
-	}, [pageOffset]);
+	}, [isSubmittedTrends]);
 
-	return <CardList isSubmitted={isSubmittedTrends} cardList={cardList} />;
+	return (
+		<main className="main">
+			<CardList isSubmitted={isSubmittedTrends} cardList={cardList} />
+			<Pagination
+				pageCount={pageCount}
+				handlePaginationClick={handlePaginationClick}
+			/>
+		</main>
+	);
 }
 
 export default Trends;

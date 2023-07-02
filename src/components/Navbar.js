@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-function Navbar({ setCardList }) {
+function Navbar({ setCardList, setPageCount, setPageOffset }) {
 	const location = useLocation();
 
 	React.useEffect(() => {
 		setCardList([]);
+		setPageCount(0);
+		setPageOffset(0);
 	}, [location]);
 
 	return (
