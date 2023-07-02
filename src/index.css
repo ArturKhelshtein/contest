@@ -24,6 +24,7 @@
 @import url(./blocks/card//card.css);
 @import url(./blocks/card/__img/card__img.css);
 @import url(./blocks/card/__name/card__name.css);
+@import url(./blocks/card/_type_random-view/card_type_random-view.css);
 
 @import url(./blocks/pagination/pagination.css);
 @import url(./blocks/pagination/__element/pagination__element.css);

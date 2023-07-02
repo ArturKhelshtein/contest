@@ -1,9 +1,11 @@
 import React from 'react';
-// import { Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import api from '../utils/api';
 import Header from './Header';
 import Footer from './Footer';
 import Main from './Main';
+import RandomCard from './RandomCard';
+import Trends from './Trends';
 import ReactPaginate from 'react-paginate';
 
 function App() {
@@ -45,17 +47,33 @@ function App() {
 	return (
 		<div className="app">
 			<Header />
-			<Main
-				handleChangeImput={setSearchQuery}
-				handleSubmitSearch={handleSubmitSearch}
-				searchQuery={searchQuery}
-				cardList={cardList}
-				isSubmitted={isSubmitted}
-				pageCount={pageCount}
-				pageCurrent={pageCurrent}
-				setPageCurrent={setPageCurrent}
-				cardsPerPage={cardsPerPage}
-			/>
+      <Routes>
+        <Route path="/" element={
+          <Main
+            handleChangeImput={setSearchQuery}
+            handleSubmitSearch={handleSubmitSearch}
+            searchQuery={searchQuery}
+            cardList={cardList}
+            isSubmitted={isSubmitted}
+            pageCount={pageCount}
+            pageCurrent={pageCurrent}
+            setPageCurrent={setPageCurrent}
+            cardsPerPage={cardsPerPage}
+          />
+        }/>
+        <Route path="/trends" element={
+          <Trends
+            cardList={cardList}
+            setCardList={setCardList}
+          />
+        }
+        />
+        <Route path="/random-gif" element={
+          <RandomCard
+          />
+        }/> 
+      </Routes>
+			
 			<Footer />
 		</div>
 	);
