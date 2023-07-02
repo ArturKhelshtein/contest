@@ -26,9 +26,9 @@ class Api {
 		);
 	}
 
-	searchGif(query) {
+	searchGif(query, offset) {
 		return this._request(
-			`/v1/gifs/search?api_key=${this._api_key}&q=${query}&limit=12`,
+			`/v1/gifs/search?api_key=${this._api_key}&q=${query}&limit=12&offset=${offset}`,
 			{
 				method: 'GET',
 				headers: this._headers,
@@ -37,10 +37,13 @@ class Api {
 	}
 
 	randomGif() {
-		return this._request(`/v1/gifs/random?api_key=${this._api_key}&tag=&rating=g`, {
-			method: 'GET',
-			headers: this.headers,
-		});
+		return this._request(
+			`/v1/gifs/random?api_key=${this._api_key}&tag=&rating=g`,
+			{
+				method: 'GET',
+				headers: this.headers,
+			}
+		);
 	}
 }
 
