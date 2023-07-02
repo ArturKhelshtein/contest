@@ -14,11 +14,14 @@ function Main() {
 	const [isSubmitted, setIsSubmitted] = React.useState(null);
 
 	const [pageCurrent, setPageCurrent] = React.useState(0);
+	const [pageOffset, setPageOffset] = React.useState(0);
 	const [pageCount, setPageCount] = React.useState([]);
 	const [cardsPerPage, setCardsPerPage] = React.useState(12);
 	//массив со всеми номерами страниц
 	const pageNumbers = [...Array(pageCount + 1).keys()].slice(1);
 	// const searchQuery = React.useContext(QueryContext);
+
+	console.log(pageCurrent);
 
 	React.useEffect(() => {
 		if (isSubmitted) {
@@ -26,7 +29,7 @@ function Main() {
 				.searchGif({
 					query: searchQuery,
 					// limit: cardsPerPage,
-					offset: pageCurrent,
+					offset: pageOffset,
 				})
 				.then((response) => {
 					setCardList(
@@ -54,11 +57,7 @@ function Main() {
 	}
 
 	const handlePageClick = (event) => {
-		const newOffset = (event.selected * cardsPerPage) % pageNumbers.length;
-		console.log(
-			`User requested page number ${event.selected}, which is offset ${newOffset}`
-		);
-
+		setPageOffset((event.selected * cardsPerPage) % pageNumbers.length);
 		setIsSubmitted(true);
 		setPageCurrent(event.selected);
 	};
@@ -119,7 +118,7 @@ function Main() {
 								cardList={cardList}
 								setCardList={setCardList}
 								cardsPerPage={cardsPerPage}
-								pageCurrent={pageCurrent}
+								// pageCurrent={pageCurrent}
 							/>
 							{Boolean(cardList[1]) ? (
 								<ReactPaginate
