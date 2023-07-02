@@ -1,7 +1,12 @@
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-function Navbar() {
+function Navbar({ setCardList }) {
 	const location = useLocation();
+
+	React.useEffect(() => {
+		setCardList([]);
+	}, [location]);
 
 	return (
 		<nav className="navbar">

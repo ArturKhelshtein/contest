@@ -1,27 +1,29 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import ReactPaginate from 'react-paginate';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import api from '../utils/api';
 //import { QueryContext } from '../context/QueryContext';
-import Card from './Card';
 import Search from './Search';
+import CardList from './CardList';
 import RandomCard from './RandomCard';
 import Trends from './Trends';
+import Pagination from './Pagination';
 
-function Main() {
+function Main({ cardList, setCardList }) {
+	const location = useLocation();
+
 	const [searchQuery, setSearchQuery] = React.useState('');
-	const [cardList, setCardList] = React.useState([]);
-	const [isSubmitted, setIsSubmitted] = React.useState(null);
+	const [isSubmittedQuery, setIsSubmittedQuery] = React.useState(false);
+	const [isSubmittedTrends, setIsSubmittedTrends] = React.useState(false);
 
-	const [pageCurrent, setPageCurrent] = React.useState(0);
+	// const [pageCurrent, setPageCurrent] = React.useState(0);
 	const [pageOffset, setPageOffset] = React.useState(0);
-	const [pageCount, setPageCount] = React.useState([]);
+	const [pageCount, setPageCount] = React.useState(0);
 	const [cardsPerPage, setCardsPerPage] = React.useState(3);
 	//массив со всеми номерами страниц
 	const pageNumbers = [...Array(pageCount + 1).keys()].slice(1);
 
 	React.useEffect(() => {
-		if (isSubmitted) {
+		if (isSubmittedQuery) {
 			api
 				.searchGif({
 					query: searchQuery,
@@ -37,114 +39,87 @@ function Main() {
 							author: card.user,
 						}))
 					);
-					if (!response.data) {
+					if (response.pagination.total_count !== 0) {
 						setPageCount(
 							Math.ceil(
 								response.pagination.total_count / response.pagination.count
 							)
 						);
+					} else {
+						setSearchQuery('');
 					}
-					setIsSubmitted(false);
+					setIsSubmittedQuery(false);
 					//setSearchQuery('');
 				});
 		}
-	}, [searchQuery, isSubmitted]);
+	}, [searchQuery, isSubmittedQuery]);
+
+	React.useEffect(() => {
+		api
+			.trendGif({ limit: cardsPerPage, offset: pageOffset })
+			.then((response) => {
+				setCardList(
+					response.data.map((card) => ({
+						id: card.id,
+						src: card.images.downsized.url,
+						alt: card.title,
+					}))
+				);
+				if (response.pagination.total_count !== 0) {
+					setPageCount(
+						Math.ceil(
+							response.pagination.total_count / response.pagination.count
+						)
+					);
+				}
+				setIsSubmittedTrends(false);
+			});
+	}, [isSubmittedTrends]);
+
+	console.log(isSubmittedTrends);
 
 	function handleSubmitSearch(event) {
 		event.preventDefault();
-		setIsSubmitted(true);
+		setPageOffset(0);
+		setIsSubmittedQuery(true);
 	}
 
-	const handlePaginationClick = (event) => {
+	function handlePaginationClick(event) {
 		setPageOffset((event.selected * cardsPerPage) % pageNumbers.length);
-		setIsSubmitted(true);
-		setPageCurrent(event.selected);
-	};
-
-	console.log(searchQuery);
+		setIsSubmittedQuery(true);
+		setIsSubmittedTrends(true);
+		// setPageCurrent(event.selected);
+	}
 
 	return (
 		<main className="main">
-			<Routes>
-				<Route
-					path="/"
-					element={
-						<>
-							<Search
-								placeholder="Найдем GIF !!!"
-								searchQuery={searchQuery}
-								setSearchQuery={setSearchQuery}
-								handleSubmitSearch={handleSubmitSearch}
-							/>
-							<section className="card-list">
-								{isSubmitted ? (
-									<div>Загружаю...</div>
-								) : (
-									cardList.map((card) => <Card key={card.id} {...card} />)
-								)}
-							</section>
-							{Boolean(cardList[1]) ? (
-								<ReactPaginate
-									breakLabel="..."
-									nextLabel=">"
-									onPageChange={handlePaginationClick}
-									pageRangeDisplayed={5}
-									pageCount={pageCount}
-									previousLabel="<"
-									renderOnZeroPageCount={null}
-									className="pagination"
-									previousClassName="pagination__element"
-									pageClassName="pagination__element"
-									breakClassName="pagination__element"
-									nextClassName="pagination__element"
-									previousLinkClassName="pagination__link"
-									pageLinkClassName="pagination__link"
-									breakLinkClassName="pagination__link"
-									nextLinkClassName="pagination__link"
-									activeClassName="pagination__element_selected"
-								/>
-							) : (
-								''
-							)}
-						</>
-					}
-				></Route>
-				<Route
-					path="/trends"
-					element={
-						<>
-							<Trends
-								cardList={cardList}
-								setCardList={setCardList}
-								cardsPerPage={cardsPerPage}
-								// pageCurrent={pageCurrent}
-							/>
-							{Boolean(cardList[1]) ? (
-								<ReactPaginate
-									breakLabel="..."
-									nextLabel=">"
-									onPageChange={handlePaginationClick}
-									pageRangeDisplayed={5}
-									pageCount={pageCount}
-									previousLabel="<"
-									renderOnZeroPageCount={null}
-									className="pagination"
-									previousClassName="pagination__element"
-									pageClassName="pagination__element"
-									breakClassName="pagination__element"
-									nextClassName="pagination__element"
-									previousLinkClassName="pagination__link"
-									pageLinkClassName="pagination__link"
-									breakLinkClassName="pagination__link"
-									nextLinkClassName="pagination__link"
-									activeClassName="pagination__element_selected"
-								/>
-							) : (
-								''
-							)}
-						</>
-					}
+			{location.pathname === '/' && (
+				<Search
+					placeholder="Найдем GIF !!!"
+					searchQuery={searchQuery}
+					setSearchQuery={setSearchQuery}
+					handleSubmitSearch={handleSubmitSearch}
 				/>
+			)}
+			{(location.pathname === '/' || location.pathname === '/trends') && (
+				<CardList
+					isSubmitted={
+						location.pathname === '/'
+							? isSubmittedQuery
+							: location.pathname === '/trends'
+							? isSubmittedTrends
+							: ''
+					}
+					cardList={cardList}
+				/>
+			)}
+			{(location.pathname === '/' || location.pathname === '/trends') && (
+				<Pagination
+					pageCount={pageCount}
+					handlePaginationClick={handlePaginationClick}
+				/>
+			)}
+			<Routes>
 				<Route path="/random-gif" element={<RandomCard />} />
 			</Routes>
 		</main>

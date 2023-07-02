@@ -1,0 +1,27 @@
+import ReactPaginate from 'react-paginate';
+
+function Pagination({ pageCount, handlePaginationClick }) {
+	return (
+		<ReactPaginate
+			pageCount={pageCount}
+			previousLabel="<"
+			breakLabel="..."
+			nextLabel=">"
+			onPageChange={handlePaginationClick}
+			pageRangeDisplayed={5}
+			renderOnZeroPageCount={null}
+			className="pagination"
+			previousClassName="pagination__element"
+			pageClassName="pagination__element"
+			breakClassName="pagination__element"
+			nextClassName="pagination__element"
+			previousLinkClassName="pagination__link"
+			pageLinkClassName="pagination__link"
+			breakLinkClassName="pagination__link"
+			nextLinkClassName="pagination__link"
+			activeClassName="pagination__element_selected"
+		/>
+	);
+}
+
+export default Pagination;

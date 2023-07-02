@@ -4,10 +4,12 @@ import Footer from './Footer';
 import Main from './Main';
 
 function App() {
+	const [cardList, setCardList] = React.useState([]);
+
 	return (
 		<div className="app">
-			<Header />
-			<Main />
+			<Header setCardList={setCardList} />
+			<Main cardList={cardList} setCardList={setCardList} />
 			<Footer />
 		</div>
 	);

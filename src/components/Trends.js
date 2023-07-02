@@ -1,13 +1,19 @@
 import React from 'react';
 import api from '../utils/api';
-import Card from './Card';
+import CardList from './CardList';
 
-function Trends({ cardList, setCardList, cardsPerPage, pageCurrent }) {
-	const [isSubmitted, setIsSubmitted] = React.useState(null);
+function Trends({
+	cardList,
+	setCardList,
+	cardsPerPage,
+	pageOffset,
+	setPageCount,
+}) {
+	const [isSubmittedTrends, setIsSubmittedTrends] = React.useState(null);
 
 	React.useEffect(() => {
 		api
-			.trendGif({ limit: cardsPerPage, offset: pageCurrent })
+			.trendGif({ limit: cardsPerPage, offset: pageOffset })
 			.then((response) => {
 				setCardList(
 					response.data.map((card) => ({
@@ -16,19 +22,18 @@ function Trends({ cardList, setCardList, cardsPerPage, pageCurrent }) {
 						alt: card.title,
 					}))
 				);
-				setIsSubmitted(false);
+				if (response.pagination.total_count !== 0) {
+					setPageCount(
+						Math.ceil(
+							response.pagination.total_count / response.pagination.count
+						)
+					);
+				}
+				setIsSubmittedTrends(false);
 			});
-	}, [pageCurrent]);
+	}, [pageOffset]);
 
-	return (
-		<section className="card-list">
-			{isSubmitted ? (
-				<div>Загружаю...</div>
-			) : (
-				cardList.map((card) => <Card key={card.id} {...card} />)
-			)}
-		</section>
-	);
+	return <CardList isSubmitted={isSubmittedTrends} cardList={cardList} />;
 }
 
 export default Trends;

@@ -18,8 +18,8 @@ class Api {
 
 	trendGif({ limit = 12, offset }) {
 		return this._request(
-			//`/v1/gifs/trending?api_key=${this._api_key}&limit=${limit}&offset=${offset}`,
-			`/v1/gifs/trending?api_key=${this._api_key}&limit=12`,
+			`/v1/gifs/trending?api_key=${this._api_key}&limit=${limit}&offset=${offset}`,
+			// `/v1/gifs/trending?api_key=${this._api_key}&limit=12`,
 			{
 				method: 'GET',
 				headers: this._headers,
