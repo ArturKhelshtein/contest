@@ -6,6 +6,7 @@ import Pagination from './Pagination';
 function Trends({
 	isSubmittedTrends,
 	setIsSubmittedTrends,
+	setIsSubmittedQuery,
 	cardList,
 	setCardList,
 	pageCount,
@@ -15,6 +16,7 @@ function Trends({
 	pageOffset,
 }) {
 	React.useEffect(() => {
+		setIsSubmittedQuery(false);
 		api
 			.trendGif({ limit: cardsPerPage, offset: pageOffset })
 			.then((response) => {

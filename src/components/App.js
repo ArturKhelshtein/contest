@@ -12,7 +12,7 @@ function App() {
 	const [isSubmittedQuery, setIsSubmittedQuery] = React.useState(false);
 	const [isSubmittedTrends, setIsSubmittedTrends] = React.useState(false);
 
-	// const [pageCurrent, setPageCurrent] = React.useState(0);
+	const [pageCurrent, setPageCurrent] = React.useState(-1);
 	const [pageOffset, setPageOffset] = React.useState(0);
 	const [pageCount, setPageCount] = React.useState(0);
 	const [cardsPerPage, setCardsPerPage] = React.useState(6);
@@ -23,7 +23,7 @@ function App() {
 		setPageOffset((event.selected * cardsPerPage) % pageNumbers.length);
 		setIsSubmittedQuery(true);
 		setIsSubmittedTrends(true);
-		// setPageCurrent(event.selected);
+		setPageCurrent(event.selected);
 	}
 
 	return (
@@ -49,6 +49,8 @@ function App() {
 							handlePaginationClick={handlePaginationClick}
 							pageOffset={pageOffset}
 							setPageOffset={setPageOffset}
+							pageCurrent={pageCurrent}
+							setPageCurrent={setPageCurrent}
 						/>
 					}
 				/>
@@ -58,6 +60,7 @@ function App() {
 						<Trends
 							isSubmittedTrends={isSubmittedTrends}
 							setIsSubmittedTrends={setIsSubmittedTrends}
+							setIsSubmittedQuery={setIsSubmittedQuery}
 							cardList={cardList}
 							setCardList={setCardList}
 							pageCount={pageCount}

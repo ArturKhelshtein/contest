@@ -28,9 +28,13 @@ function NotFound() {
 			});
 	}, []);
 
-  return (
-    <main className="main">
-      <h2 className="not-found__title">Что-то пошло не так...<br/>Выберите один из пунктов меню выше</h2>
+	return (
+		<main className="main">
+			<h2 className="not-found__title">
+				Что-то пошло не так...
+				<br />
+				Выберите один из пунктов меню выше
+			</h2>
 			<div className="card_type_one-card">
 				{isLoading ? (
 					<div>Загружаю...</div>

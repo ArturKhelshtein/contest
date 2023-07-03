@@ -1,6 +1,6 @@
 import ReactPaginate from 'react-paginate';
 
-function Pagination({ pageCount, handlePaginationClick }) {
+function Pagination({ pageCount, handlePaginationClick, pageCurrent }) {
 	return (
 		<ReactPaginate
 			pageCount={pageCount}
@@ -20,6 +20,7 @@ function Pagination({ pageCount, handlePaginationClick }) {
 			breakLinkClassName="pagination__link"
 			nextLinkClassName="pagination__link"
 			activeClassName="pagination__element_selected"
+			forcePage={pageCurrent}
 		/>
 	);
 }
