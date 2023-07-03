@@ -19,7 +19,6 @@ class Api {
 	trendGif({ limit = 12, offset }) {
 		return this._request(
 			`/v1/gifs/trending?api_key=${this._api_key}&limit=${limit}&offset=${offset}`,
-			// `/v1/gifs/trending?api_key=${this._api_key}&limit=12`,
 			{
 				method: 'GET',
 				headers: this._headers,
@@ -27,7 +26,7 @@ class Api {
 		);
 	}
 
-	searchGif({ query, limit = 12, offset }) {
+	searchGif({ query, limit = 12, offset = 0 }) {
 		return this._request(
 			`/v1/gifs/search?api_key=${this._api_key}&q=${query}&limit=${limit}&offset=${offset}`,
 			{
@@ -44,12 +43,18 @@ class Api {
 		});
 	}
 
-  notFoundGif() {
-		return this._request(`/v1/gifs/8L0Pky6C83SzkzU55a?api_key=${this._api_key}&rating=g`, {
-			method: 'GET',
-			headers: this.headers,
-		});
-	}
+	// notFoundGif() {
+	// 	return this._request(
+	// 		// `/v1/gifs/search?api_key=${this._api_key}&q=404&limit=1&offset=${
+	// 		// 	Math.random() * 100
+	// 		// }`, ).then this._request(
+	// 		// return this._request(
+	// 		`/v1/gifs/8L0Pky6C83SzkzU55a?api_key=${this._api_key}&rating=g`,
+	// 		{
+	// 			method: 'GET',
+	// 			headers: this.headers,
+	// 		}
+	// 	);
 }
 
 const api = new Api({

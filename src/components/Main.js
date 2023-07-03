@@ -19,7 +19,7 @@ function Main({
 	setPageOffset,
 }) {
 	const [searchQuery, setSearchQuery] = React.useState('');
-  const [isNoGifs, setIsNoGifs] = React.useState(false);
+	const [isNoGifs, setIsNoGifs] = React.useState(false);
 
 	React.useEffect(() => {
 		if (isSubmittedQuery) {
@@ -35,6 +35,7 @@ function Main({
 							id: card.id,
 							src: card.images.downsized.url,
 							alt: card.title,
+							title: card.title,
 							author: card.user,
 						}))
 					);
@@ -46,7 +47,7 @@ function Main({
 						);
 					} else {
 						setSearchQuery('');
-            setIsNoGifs(true);
+						setIsNoGifs(true);
 					}
 					setIsSubmittedQuery(false);
 					//setSearchQuery('');
@@ -68,8 +69,8 @@ function Main({
 				setSearchQuery={setSearchQuery}
 				handleSubmitSearch={handleSubmitSearch}
 			/>
-      {isNoGifs && <InfoToolTip />}
-      <CardList isSubmitted={isSubmittedQuery} cardList={cardList} />
+			{isNoGifs && <InfoToolTip />}
+			<CardList isSubmitted={isSubmittedQuery} cardList={cardList} />
 			<Pagination
 				pageCount={pageCount}
 				handlePaginationClick={handlePaginationClick}
