@@ -24,13 +24,16 @@
 @import url(./blocks/card//card.css);
 @import url(./blocks/card/__img/card__img.css);
 @import url(./blocks/card/__name/card__name.css);
-@import url(./blocks/card/_type_random-view/card_type_random-view.css);
+@import url(./blocks/card/_type_one-card/card_type_one-card.css);
 
 @import url(./blocks/pagination/pagination.css);
 @import url(./blocks/pagination/__element/pagination__element.css);
 @import url(./blocks/pagination/__element/pagination__element_selected.css);
 @import url(./blocks/pagination/__link/pagination__link.css);
 @import url(./blocks/pagination/__numbers-container/pagination__numbers-container.css);
+
+@import url(./blocks/not-found/not-found.css);
+@import url(./blocks/not-found/__title/not-found__title.css);
 
 @import url(./blocks/footer/footer.css);
 @import url(./blocks/footer/__copyright/footer__copyright.css);

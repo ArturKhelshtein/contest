@@ -4,6 +4,7 @@ import api from '../utils/api';
 import Search from './Search';
 import CardList from './CardList';
 import Pagination from './Pagination';
+import InfoToolTip from './InfoToolTip';
 
 function Main({
 	isSubmittedQuery,
@@ -18,6 +19,7 @@ function Main({
 	setPageOffset,
 }) {
 	const [searchQuery, setSearchQuery] = React.useState('');
+  const [isNoGifs, setIsNoGifs] = React.useState(false);
 
 	React.useEffect(() => {
 		if (isSubmittedQuery) {
@@ -44,6 +46,7 @@ function Main({
 						);
 					} else {
 						setSearchQuery('');
+            setIsNoGifs(true);
 					}
 					setIsSubmittedQuery(false);
 					//setSearchQuery('');
@@ -65,7 +68,8 @@ function Main({
 				setSearchQuery={setSearchQuery}
 				handleSubmitSearch={handleSubmitSearch}
 			/>
-			<CardList isSubmitted={isSubmittedQuery} cardList={cardList} />
+      {isNoGifs && <InfoToolTip />}
+      <CardList isSubmitted={isSubmittedQuery} cardList={cardList} />
 			<Pagination
 				pageCount={pageCount}
 				handlePaginationClick={handlePaginationClick}
