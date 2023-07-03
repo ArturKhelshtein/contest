@@ -26,13 +26,20 @@
 @import url(./blocks/card/__name/card__name.css);
 @import url(./blocks/card/_type_one-card/card_type_one-card.css);
 
+@import url(./blocks/popup/popup.css);
+@import url(./blocks/popup/_opened/popup_opened.css);
+@import url(./blocks/popup/__container/popup__container.css);
+@import url(./blocks/popup/__title/popup__title.css);
+@import url(./blocks/popup/__info-img/popup__info-img.css);
+@import url(./blocks/popup/__close-button/popup__close-button.css);
+
+
 @import url(./blocks/pagination/pagination.css);
 @import url(./blocks/pagination/__element/pagination__element.css);
 @import url(./blocks/pagination/__element/pagination__element_selected.css);
 @import url(./blocks/pagination/__link/pagination__link.css);
 @import url(./blocks/pagination/__numbers-container/pagination__numbers-container.css);
 
-@import url(./blocks/not-found/not-found.css);
 @import url(./blocks/not-found/__title/not-found__title.css);
 
 @import url(./blocks/footer/footer.css);

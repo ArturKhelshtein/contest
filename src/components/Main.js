@@ -5,6 +5,7 @@ import Search from './Search';
 import CardList from './CardList';
 import Pagination from './Pagination';
 import InfoToolTip from './InfoToolTip';
+import Fail from '../image/Fail.svg';
 
 function Main({
 	isSubmittedQuery,
@@ -19,9 +20,13 @@ function Main({
 	setPageOffset,
 }) {
 	const [searchQuery, setSearchQuery] = React.useState('');
-	const [isNoGifs, setIsNoGifs] = React.useState(false);
+  const [isFailToolTipOpen, setIsFailToolTipOpen] = React.useState(false);
 
-	React.useEffect(() => {
+  function handleFailToolTip() {
+    setIsFailToolTipOpen(true);
+  }
+
+  React.useEffect(() => {
 		if (isSubmittedQuery) {
 			api
 				.searchGif({
@@ -47,7 +52,7 @@ function Main({
 						);
 					} else {
 						setSearchQuery('');
-						setIsNoGifs(true);
+            handleFailToolTip();
 					}
 					setIsSubmittedQuery(false);
 					//setSearchQuery('');
@@ -69,8 +74,14 @@ function Main({
 				setSearchQuery={setSearchQuery}
 				handleSubmitSearch={handleSubmitSearch}
 			/>
-			{isNoGifs && <InfoToolTip />}
-			<CardList isSubmitted={isSubmittedQuery} cardList={cardList} />
+      <InfoToolTip
+        title={<><p className="popup__text">Упс... ничего нет!</p></>} 
+        toolTipImg={Fail}
+        isOpen={isFailToolTipOpen}
+        onClose={() => setIsFailToolTipOpen(false)}
+      />
+      <CardList isSubmitted={isSubmittedQuery} cardList={cardList} />
+
 			<Pagination
 				pageCount={pageCount}
 				handlePaginationClick={handlePaginationClick}
