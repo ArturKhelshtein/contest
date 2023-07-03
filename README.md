@@ -4,9 +4,10 @@
 
 ##исходные данные
 
-- бэкэнд Giphy API.
 - дизайн интерфейса на усмотрение проектировщиков
 - требуемая функциональность по макету https://www.figma.com/file/Qltxlk8yU8LJ6MVVwdBLy3/YP-Competition%233?node-id=0%3A1&mode=dev
+- документация по работе Giphy API https://developers.giphy.com/docs/api/endpoint/#trending
+- документация по работе с пагинацией https://www.npmjs.com/package/react-paginate/v/8.2.0
 
 ##функциональность
 
