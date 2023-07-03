@@ -4,6 +4,7 @@ import Footer from './Footer';
 import Main from './Main';
 import Trends from './Trends';
 import RandomCard from './RandomCard';
+import NotFound from './NotFound';
 import { Route, Routes, Navigate } from 'react-router-dom';
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
 				setPageOffset={setPageOffset}
 			/>
 			<Routes>
+      <Route path='*' element={<NotFound />}/>
 				<Route
 					path="/"
 					element={

@@ -25,7 +25,7 @@ function RandomCard() {
 
 	return (
 		<main className="main">
-			<div className="card_type_random-view" onClick={handleNewRandomGif}>
+			<div className="card_type_one-card" onClick={handleNewRandomGif}>
 				{isLoading ? (
 					<div>Загружаю...</div>
 				) : (
