@@ -2,6 +2,7 @@ import React from 'react';
 import api from '../utils/api';
 import CardList from './CardList';
 import Pagination from './Pagination';
+import QuantityCardPerPage from './QuantityCardPerPage';
 
 function Trends({
 	isSubmittedTrends,
@@ -14,6 +15,7 @@ function Trends({
 	cardsPerPage,
 	handlePaginationClick,
 	pageOffset,
+	handleChangeCardPerPage,
 }) {
 	React.useEffect(() => {
 		setIsSubmittedQuery(false);
@@ -36,10 +38,11 @@ function Trends({
 				}
 				setIsSubmittedTrends(false);
 			});
-	}, [isSubmittedTrends]);
+	}, [isSubmittedTrends, cardsPerPage]);
 
 	return (
 		<main className="main">
+			<QuantityCardPerPage handleChangeCardPerPage={handleChangeCardPerPage} />
 			<CardList isSubmitted={isSubmittedTrends} cardList={cardList} />
 			<Pagination
 				pageCount={pageCount}

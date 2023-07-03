@@ -20,6 +20,10 @@
 @import url(./blocks/search/__button/_type/search__button_type_reset.css);
 @import url(./blocks/search/__button/_type/search__button_type_submit.css);
 @import url(./blocks/search/__input/search__input.css);
+@import url(./blocks/search/__label/search__label.css);
+@import url(./blocks/search/__quantity/search__quantity.css);
+@import url(./blocks/search/__radio-container/search__radio-container.css);
+@import url(./blocks/search/__radio/search__radio.css);
 @import url(./blocks/card-list/card-list.css);
 @import url(./blocks/card//card.css);
 @import url(./blocks/card/__img/card__img.css);
@@ -32,7 +36,6 @@
 @import url(./blocks/popup/__title/popup__title.css);
 @import url(./blocks/popup/__info-img/popup__info-img.css);
 @import url(./blocks/popup/__close-button/popup__close-button.css);
-
 
 @import url(./blocks/pagination/pagination.css);
 @import url(./blocks/pagination/__element/pagination__element.css);

@@ -1,8 +1,14 @@
 .search {
-	min-height: 30px;
-		margin-bottom: 27px;
-		display: grid;
+	min-height: 40px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 1fr 1fr;
+	gap: 10px;
+	box-sizing: border-box;
+}
+
+@media (min-width: 360px) {
+	.search {
 		grid-template-columns: 1fr 40px 40px;
-		gap: 10px;
-		box-sizing: border-box;
+	}
 }

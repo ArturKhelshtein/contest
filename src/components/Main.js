@@ -20,6 +20,7 @@ function Main({
 	setPageOffset,
 	pageCurrent,
 	setPageCurrent,
+	handleChangeCardPerPage,
 }) {
 	const [searchQuery, setSearchQuery] = React.useState('');
 	const [isFailToolTipOpen, setIsFailToolTipOpen] = React.useState(false);
@@ -81,7 +82,7 @@ function Main({
 					//setSearchQuery('');
 				});
 		}
-	}, [searchQuery, isSubmittedQuery]);
+	}, [searchQuery, isSubmittedQuery, cardsPerPage]);
 
 	function handleSubmitSearch(event) {
 		event.preventDefault();
@@ -96,6 +97,7 @@ function Main({
 				searchQuery={searchQuery}
 				setSearchQuery={setSearchQuery}
 				handleSubmitSearch={handleSubmitSearch}
+				handleChangeCardPerPage={handleChangeCardPerPage}
 			/>
 			<InfoToolTip
 				title={

@@ -1,8 +1,11 @@
+import QuantityCardPerPage from './QuantityCardPerPage';
+
 function Search({
 	placeholder,
 	searchQuery,
 	setSearchQuery,
 	handleSubmitSearch,
+	handleChangeCardPerPage,
 }) {
 	function handleInputReset() {
 		setSearchQuery('');
@@ -30,6 +33,7 @@ function Search({
 				aria-label="начать поиск"
 				type="submit"
 			></button>
+			<QuantityCardPerPage handleChangeCardPerPage={handleChangeCardPerPage} />
 		</form>
 	);
 }

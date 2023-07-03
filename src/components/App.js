@@ -15,7 +15,7 @@ function App() {
 	const [pageCurrent, setPageCurrent] = React.useState(-1);
 	const [pageOffset, setPageOffset] = React.useState(0);
 	const [pageCount, setPageCount] = React.useState(0);
-	const [cardsPerPage, setCardsPerPage] = React.useState(6);
+	const [cardsPerPage, setCardsPerPage] = React.useState(12);
 	//массив со всеми номерами страниц
 	const pageNumbers = [...Array(pageCount + 1).keys()].slice(1);
 
@@ -24,6 +24,10 @@ function App() {
 		setIsSubmittedQuery(true);
 		setIsSubmittedTrends(true);
 		setPageCurrent(event.selected);
+	}
+
+	function handleChangeCardPerPage(e) {
+		setCardsPerPage(e.target.value);
 	}
 
 	return (
@@ -51,6 +55,7 @@ function App() {
 							setPageOffset={setPageOffset}
 							pageCurrent={pageCurrent}
 							setPageCurrent={setPageCurrent}
+							handleChangeCardPerPage={handleChangeCardPerPage}
 						/>
 					}
 				/>
@@ -68,6 +73,7 @@ function App() {
 							cardsPerPage={cardsPerPage}
 							handlePaginationClick={handlePaginationClick}
 							pageOffset={pageOffset}
+							handleChangeCardPerPage={handleChangeCardPerPage}
 						/>
 					}
 				/>
