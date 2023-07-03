@@ -28,27 +28,26 @@ function Main({
 		setIsFailToolTipOpen(true);
 	}
 
-  function handleCloseInfoToolTip() {
-    setIsFailToolTipOpen(false);
-  }
-
-  React.useEffect(() => {
-    const close = (e) => {
-      if(e.keyCode === 27){
-        handleCloseInfoToolTip()
-      }
-    }
-    window.addEventListener('keydown', close);
-    window.addEventListener('mousedown', (event) => {
-      if (event.target.classList.contains('popup_opened')) {
-        handleCloseInfoToolTip()
-      }
-    })
-    return () => window.removeEventListener('keydown', close)
-  },[])
+	function handleCloseInfoToolTip() {
+		setIsFailToolTipOpen(false);
+	}
 
 	React.useEffect(() => {
-    
+		const close = (e) => {
+			if (e.keyCode === 27) {
+				handleCloseInfoToolTip();
+			}
+		};
+		window.addEventListener('keydown', close);
+		window.addEventListener('mousedown', (event) => {
+			if (event.target.classList.contains('popup_opened')) {
+				handleCloseInfoToolTip();
+			}
+		});
+		return () => window.removeEventListener('keydown', close);
+	}, []);
+
+	React.useEffect(() => {
 		if (isSubmittedQuery) {
 			api
 				.searchGif({
@@ -66,6 +65,7 @@ function Main({
 							author: card.user,
 						}))
 					);
+					if (pageOffset === 0) setPageCurrent(0);
 					if (response.pagination.total_count !== 0) {
 						setPageCount(
 							Math.ceil(
@@ -86,7 +86,6 @@ function Main({
 	function handleSubmitSearch(event) {
 		event.preventDefault();
 		setPageOffset(0);
-		setPageCurrent(0);
 		setIsSubmittedQuery(true);
 	}
 
