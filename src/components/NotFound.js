@@ -12,10 +12,8 @@ function NotFound() {
       (card) => {
 			setNotFoundCard({
 				id: card.data.id,
-				src: card.data.images.original.url,
-				alt: card.data.title,
-        title: card.data.title,
-				author: card.data.user,
+				src: card.data.url,
+				alt: card.data.title
 			});
 			setIsLoading(false);
 		});
@@ -23,9 +21,8 @@ function NotFound() {
   
 
   return (
-    <main className="main not-found">
-      <h2 className="not-found__title">Что-то пошло не так...</h2>
-      <h2 className="not-found__title">Выберите один из пунктов меню выше</h2>
+    <main className="main">
+      <h2 className="not-found__title">Что-то пошло не так...<br/>Выберите один из пунктов меню выше</h2>
 			<div className="card_type_one-card">
 				{isLoading ? (
 					<div>Загружаю...</div>

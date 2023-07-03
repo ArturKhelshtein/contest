@@ -45,7 +45,7 @@ class Api {
 	}
 
   notFoundGif() {
-		return this._request(`/v1/gifs/8L0Pky6C83SzkzU55a?api_key=${this._api_key}&rating=g`, {
+		return this._request(`/v1/gifs/search?api_key=${this._api_key}&q=404&limit=1&offset=0&rating=g&lang=en&bundle=messaging_non_clips`, {
 			method: 'GET',
 			headers: this.headers,
 		});
