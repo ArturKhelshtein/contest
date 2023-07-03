@@ -28,7 +28,27 @@ function Main({
 		setIsFailToolTipOpen(true);
 	}
 
+  function handleCloseInfoToolTip() {
+    setIsFailToolTipOpen(false);
+  }
+
+  React.useEffect(() => {
+    const close = (e) => {
+      if(e.keyCode === 27){
+        handleCloseInfoToolTip()
+      }
+    }
+    window.addEventListener('keydown', close);
+    window.addEventListener('mousedown', (event) => {
+      if (event.target.classList.contains('popup_opened')) {
+        handleCloseInfoToolTip()
+      }
+    })
+    return () => window.removeEventListener('keydown', close)
+  },[])
+
 	React.useEffect(() => {
+    
 		if (isSubmittedQuery) {
 			api
 				.searchGif({
@@ -86,7 +106,7 @@ function Main({
 				}
 				toolTipImg={Fail}
 				isOpen={isFailToolTipOpen}
-				onClose={() => setIsFailToolTipOpen(false)}
+				onClose={handleCloseInfoToolTip}
 			/>
 			<CardList isSubmitted={isSubmittedQuery} cardList={cardList} />
 
