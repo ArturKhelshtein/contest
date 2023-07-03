@@ -26,7 +26,7 @@ function Main({
     setIsFailToolTipOpen(true);
   }
 
-	React.useEffect(() => {
+  React.useEffect(() => {
 		if (isSubmittedQuery) {
 			api
 				.searchGif({
@@ -40,6 +40,7 @@ function Main({
 							id: card.id,
 							src: card.images.downsized.url,
 							alt: card.title,
+							title: card.title,
 							author: card.user,
 						}))
 					);
@@ -80,6 +81,7 @@ function Main({
         onClose={() => setIsFailToolTipOpen(false)}
       />
       <CardList isSubmitted={isSubmittedQuery} cardList={cardList} />
+
 			<Pagination
 				pageCount={pageCount}
 				handlePaginationClick={handlePaginationClick}

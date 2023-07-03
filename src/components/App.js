@@ -34,7 +34,7 @@ function App() {
 				setPageOffset={setPageOffset}
 			/>
 			<Routes>
-      <Route path='*' element={<NotFound />}/>
+				<Route path="*" element={<NotFound />} />
 				<Route
 					path="/"
 					element={
