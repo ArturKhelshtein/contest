@@ -54,6 +54,7 @@ function Main({
 						);
 					} else {
 						setSearchQuery('');
+						setPageCount(0);
 						handleFailToolTip();
 					}
 					setIsSubmittedQuery(false);
