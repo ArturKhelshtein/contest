@@ -13,9 +13,9 @@ function Navbar({ setCardList, setPageCount, setPageOffset }) {
 	return (
 		<nav className="navbar">
 			<Link
-				to="/"
+				to="/search"
 				className={`navbar__link ${
-					location.pathname === '/' ? 'navbar__link_selected' : ''
+					location.pathname === '/search' ? 'navbar__link_selected' : ''
 				}`}
 			>
 				Поиск

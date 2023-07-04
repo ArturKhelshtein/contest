@@ -1,6 +1,6 @@
 import React from 'react';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import api from '../utils/api';
-//import { QueryContext } from '../context/QueryContext';
 import Search from './Search';
 import CardList from './CardList';
 import Pagination from './Pagination';
@@ -24,7 +24,15 @@ function Main({
 	handleChangeCardPerPage,
 }) {
 	const [searchQuery, setSearchQuery] = React.useState('');
+	//const [query, setQuery] = React.useState('');
 	const [isFailToolTipOpen, setIsFailToolTipOpen] = React.useState(false);
+	const navigate = useNavigate();
+
+	const params = useParams();
+
+	const [searchParams, setSearchParams] = useSearchParams();
+
+	console.log(searchParams.get('q'));
 
 	function handleFailToolTip() {
 		setIsFailToolTipOpen(true);
@@ -49,12 +57,16 @@ function Main({
 		return () => window.removeEventListener('keydown', close);
 	}, []);
 
+	//console.log(isSubmittedQuery);
+	//console.log(params.id);
+
 	React.useEffect(() => {
+		//		setQuery(searchQuery);
 		setIsSubmittedTrends(false);
 		if (isSubmittedQuery) {
 			api
 				.searchGif({
-					query: searchQuery,
+					query: searchParams.get('q'),
 					limit: cardsPerPage,
 					offset: pageOffset,
 				})
@@ -81,13 +93,14 @@ function Main({
 						handleFailToolTip();
 					}
 					setIsSubmittedQuery(false);
-					//setSearchQuery('');
+					setSearchQuery('');
 				});
 		}
-	}, [searchQuery, isSubmittedQuery, cardsPerPage]);
+	}, [isSubmittedQuery, cardsPerPage, searchParams]);
 
 	function handleSubmitSearch(event) {
 		event.preventDefault();
+		navigate(`?q=${searchQuery}`, { replace: true });
 		setPageOffset(0);
 		setIsSubmittedQuery(true);
 	}

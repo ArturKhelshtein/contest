@@ -17,7 +17,7 @@ function Search({
 				type="text"
 				name="search"
 				placeholder={placeholder}
-				onChange={(e) => setSearchQuery(e.target.value)}
+				onChange={(event) => setSearchQuery(event.target.value)}
 				value={searchQuery || ''}
 				autoComplete="off"
 				required

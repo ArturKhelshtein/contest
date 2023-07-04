@@ -45,9 +45,6 @@ class Api {
 
 	// notFoundGif() {
 	// 	return this._request(
-	// 		// `/v1/gifs/search?api_key=${this._api_key}&q=404&limit=1&offset=${
-	// 		// 	Math.random() * 100
-	// 		// }`, ).then this._request(
 	// 		// return this._request(
 	// 		`/v1/gifs/8L0Pky6C83SzkzU55a?api_key=${this._api_key}&rating=g`,
 	// 		{

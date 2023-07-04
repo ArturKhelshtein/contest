@@ -1,11 +1,17 @@
 import React from 'react';
+import {
+	Route,
+	Routes,
+	Navigate,
+	useParams,
+	useNavigate,
+} from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import Main from './Main';
 import Trends from './Trends';
 import RandomCard from './RandomCard';
 import NotFound from './NotFound';
-import { Route, Routes, Navigate } from 'react-router-dom';
 
 function App() {
 	const [cardList, setCardList] = React.useState([]);
@@ -19,6 +25,8 @@ function App() {
 	//массив со всеми номерами страниц
 	const pageNumbers = [...Array(pageCount + 1).keys()].slice(1);
 
+	const navigate = useNavigate();
+
 	function handlePaginationClick(event) {
 		setPageOffset((event.selected * cardsPerPage) % pageNumbers.length);
 		setIsSubmittedQuery(true);
@@ -26,8 +34,9 @@ function App() {
 		setPageCurrent(event.selected);
 	}
 
-	function handleChangeCardPerPage(e) {
-		setCardsPerPage(e.target.value);
+	function handleChangeCardPerPage(event) {
+		setCardsPerPage(event.target.value);
+		setPageCurrent(0);
 		setIsSubmittedQuery(true);
 		setIsSubmittedTrends(true);
 	}
@@ -40,9 +49,8 @@ function App() {
 				setPageOffset={setPageOffset}
 			/>
 			<Routes>
-				<Route path="*" element={<NotFound />} />
 				<Route
-					path="/"
+					path="/search"
 					element={
 						<Main
 							isSubmittedQuery={isSubmittedQuery}
@@ -81,7 +89,9 @@ function App() {
 					}
 				/>
 				<Route path="/random-gif" element={<RandomCard />} />
-				<Route path="*" element={<Navigate to="/" />} />
+				{/* <Route path="/" action={navigate('/search', { replace: true })} /> */}
+				<Route path="*" element={<NotFound />} />
+				{/* <Route path="*" element={<Navigate to="/search" />} /> */}
 			</Routes>
 
 			<Footer />
