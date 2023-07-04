@@ -26,8 +26,8 @@ function App() {
 	//массив со всеми номерами страниц
 	const pageNumbers = [...Array(pageCount + 1).keys()].slice(1);
 
-	// const navigate = useNavigate();
-	// const location = useLocation();
+	const navigate = useNavigate();
+	const location = useLocation();
 
 	const [searchParams, setSearchParams] = useSearchParams();
 
@@ -36,28 +36,23 @@ function App() {
 		setIsSubmittedQuery(true);
 		setIsSubmittedTrends(true);
 		setPageCurrent(event.selected);
-		// navigate(`${location.search}&offset=${event.selected + 1}`, {
+		// setSearchParams(`?q=${searchParams.getAll('q')}&offset=${event.selected + 1}`, {
 		// 	replace: true,
-		// });
+		// })
 	}
-
+	
 	function handleChangeCardPerPage(event) {
 		setCardsPerPage(event.target.value);
 		setPageCurrent(0);
 		if (searchParams.get('q')) {
 			setIsSubmittedQuery(true);
 		} else {
-			setPageCurrent(-1);
+			setPageCurrent(0);
 		}
 		setIsSubmittedTrends(true);
-		// console.log(searchParams);
-		// console.log(searchParams.get('limit').delete);
-		//searchParams.delete('q');
-		// navigate(`${location.search}&limit=${event.target.value}`, {
-		// 	replace: true,
-		// });
-		//console.log(searchParams.delete('limit'));
-		//console.log(searchParams.delete(limit));
+		setSearchParams(`?q=${searchParams.getAll('q')}&limit=${event.target.value}`, {
+			replace: true,
+		})
 	}
 
 	return (

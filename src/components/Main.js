@@ -71,7 +71,7 @@ function Main({
 							author: card.user,
 						}))
 					);
-					if (pageOffset === 0) setPageCurrent(-1);
+					if (pageOffset === 0) setPageCurrent(0);
 					if (response.pagination.total_count !== 0) {
 						setPageCount(
 							Math.ceil(
@@ -79,6 +79,7 @@ function Main({
 							)
 						);
 					} else {
+						setPageCurrent(-1)
 						setSearchQuery('');
 						setPageCount(0);
 						handleFailToolTip();
