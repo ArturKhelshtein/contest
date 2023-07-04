@@ -29,3 +29,6 @@
 / - основная страница
 /trends - автопоиск по Трендам
 /random-gif - случайная гифка
+
+
+#https://arturkhelshtein.github.io/contest/
