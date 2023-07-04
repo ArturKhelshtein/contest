@@ -28,6 +28,8 @@ function App() {
 
 	function handleChangeCardPerPage(e) {
 		setCardsPerPage(e.target.value);
+		setIsSubmittedQuery(true);
+		setIsSubmittedTrends(true);
 	}
 
 	return (
@@ -44,6 +46,7 @@ function App() {
 					element={
 						<Main
 							isSubmittedQuery={isSubmittedQuery}
+							setIsSubmittedTrends={setIsSubmittedTrends}
 							setIsSubmittedQuery={setIsSubmittedQuery}
 							cardList={cardList}
 							setCardList={setCardList}

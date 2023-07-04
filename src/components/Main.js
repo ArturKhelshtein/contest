@@ -9,6 +9,7 @@ import Fail from '../image/Fail.svg';
 
 function Main({
 	isSubmittedQuery,
+	setIsSubmittedTrends,
 	setIsSubmittedQuery,
 	cardList,
 	setCardList,
@@ -49,6 +50,7 @@ function Main({
 	}, []);
 
 	React.useEffect(() => {
+		setIsSubmittedTrends(false);
 		if (isSubmittedQuery) {
 			api
 				.searchGif({
