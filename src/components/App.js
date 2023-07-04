@@ -69,6 +69,7 @@ function App() {
 		<div className={`ground ${isLight ? `ground_theme_light` : ``}`}>
 			<div className="app">
 				<Header
+					isLight={isLight}
 					setCardList={setCardList}
 					setPageCount={setPageCount}
 					setPageOffset={setPageOffset}

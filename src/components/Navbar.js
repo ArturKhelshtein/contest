@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-function Navbar({ setCardList, setPageCount, setPageOffset }) {
+function Navbar({ isLight, setCardList, setPageCount, setPageOffset }) {
 	const location = useLocation();
 
 	React.useEffect(() => {
@@ -15,24 +15,42 @@ function Navbar({ setCardList, setPageCount, setPageOffset }) {
 			<Link
 				to="/search"
 				className={`navbar__link ${
-					location.pathname === '/search' ? 'navbar__link_selected' : ''
-				}`}
+					location.pathname === '/search'
+						? isLight
+							? `navbar__link_selected_theme_light navbar__link_theme_light`
+							: 'navbar__link_selected'
+						: isLight
+						? 'navbar__link_theme_light'
+						: ''
+				} `}
 			>
 				Поиск
 			</Link>
 			<Link
 				to="/trends"
 				className={`navbar__link ${
-					location.pathname === '/trends' ? 'navbar__link_selected' : ''
-				}`}
+					location.pathname === '/trends'
+						? isLight
+							? `navbar__link_selected_theme_light navbar__link_theme_light`
+							: 'navbar__link_selected'
+						: isLight
+						? 'navbar__link_theme_light'
+						: ''
+				} `}
 			>
 				Тренды
 			</Link>
 			<Link
 				to="/random-gif"
 				className={`navbar__link ${
-					location.pathname === '/random-gif' ? 'navbar__link_selected' : ''
-				}`}
+					location.pathname === '/random-gif'
+						? isLight
+							? `navbar__link_selected_theme_light navbar__link_theme_light`
+							: 'navbar__link_selected'
+						: isLight
+						? 'navbar__link_theme_light'
+						: ''
+				} `}
 			>
 				Случайный GIF
 			</Link>

@@ -16,6 +16,8 @@
 @import url(./blocks/navbar/navbar.css);
 @import url(./blocks/navbar/__link/navbar__link.css);
 @import url(./blocks/navbar/__link/navbar__link_selected.css);
+@import url(./blocks/navbar/__link/_theme/navbar__link_theme_light.css);
+@import url(./blocks/navbar/__link/_theme/navbar__link_selected_theme_light.css);
 @import url(./blocks/navbar/__container/_type/navbar__container_type_desktop.css);
 @import url(./blocks/navbar/__container/_type/navbar__container_type_mobile.css);
 @import url(./blocks/navbar/__container/_type/navbar__container_type_mobile-unwrapped.css);
