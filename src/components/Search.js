@@ -6,6 +6,7 @@ function Search({
 	setSearchQuery,
 	handleSubmitSearch,
 	handleChangeCardPerPage,
+  isLight
 }) {
 	function handleInputReset() {
 		setSearchQuery('');
@@ -13,7 +14,7 @@ function Search({
 	return (
 		<form className="search" onSubmit={handleSubmitSearch}>
 			<input
-				className="search__input"
+				className={`search__input ${isLight ? `search__input_theme_light` : ``}`}
 				type="text"
 				name="search"
 				placeholder={placeholder}
