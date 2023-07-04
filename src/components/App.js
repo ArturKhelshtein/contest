@@ -13,6 +13,7 @@ import Main from './Main';
 import Trends from './Trends';
 import RandomCard from './RandomCard';
 import NotFound from './NotFound';
+import ThemeToggle from './ThemeToggle';
 
 function App() {
 	const [cardList, setCardList] = React.useState([]);
@@ -30,6 +31,12 @@ function App() {
 	const location = useLocation();
 
 	const [searchParams, setSearchParams] = useSearchParams();
+
+  const [isLight, setIsLight] = React.useState(false);
+
+  function handleChangeTheme() {
+    setIsLight(!isLight);
+  }
 
 	function handlePaginationClick(event) {
 		setPageOffset((event.selected * cardsPerPage) % pageNumbers.length);
@@ -56,7 +63,9 @@ function App() {
 	}
 
 	return (
-		<div className="app">
+    <div className={`ground ${isLight ? `ground_theme_light` : ``}`}>
+      <div className="app">
+      <ThemeToggle onClick={handleChangeTheme}/>
 			<Header
 				setCardList={setCardList}
 				setPageCount={setPageCount}
@@ -67,6 +76,7 @@ function App() {
 					path="/search"
 					element={
 						<Main
+              isLight={isLight}
 							isSubmittedQuery={isSubmittedQuery}
 							setIsSubmittedTrends={setIsSubmittedTrends}
 							setIsSubmittedQuery={setIsSubmittedQuery}
@@ -110,9 +120,10 @@ function App() {
 				/>
 				<Route path="*" element={<NotFound />} />
 			</Routes>
-
 			<Footer />
 		</div>
+    </div>
+		
 	);
 }
 
