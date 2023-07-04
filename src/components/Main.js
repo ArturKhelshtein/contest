@@ -24,13 +24,10 @@ function Main({
 	handleChangeCardPerPage,
 }) {
 	const [searchQuery, setSearchQuery] = React.useState('');
-	//const [query, setQuery] = React.useState('');
 	const [isFailToolTipOpen, setIsFailToolTipOpen] = React.useState(false);
 	const navigate = useNavigate();
 
 	const [searchParams, setSearchParams] = useSearchParams();
-
-	//console.log(searchParams.get('q'));
 
 	function handleFailToolTip() {
 		setIsFailToolTipOpen(true);
@@ -57,7 +54,7 @@ function Main({
 
 	React.useEffect(() => {
 		setIsSubmittedTrends(false);
-		if (isSubmittedQuery) {
+		if (isSubmittedQuery && searchParams.get('q') !== null) {
 			api
 				.searchGif({
 					query: searchParams.get('q'),
@@ -74,7 +71,7 @@ function Main({
 							author: card.user,
 						}))
 					);
-					if (pageOffset === 0) setPageCurrent(0);
+					if (pageOffset === 0) setPageCurrent(-1);
 					if (response.pagination.total_count !== 0) {
 						setPageCount(
 							Math.ceil(
@@ -85,6 +82,9 @@ function Main({
 						setSearchQuery('');
 						setPageCount(0);
 						handleFailToolTip();
+						navigate(`/search`, {
+							replace: true,
+						});
 					}
 					setIsSubmittedQuery(false);
 					setSearchQuery('');

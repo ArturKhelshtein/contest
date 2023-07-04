@@ -5,6 +5,7 @@ import {
 	useSearchParams,
 	useNavigate,
 	Navigate,
+	useLocation,
 } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
@@ -25,26 +26,38 @@ function App() {
 	//массив со всеми номерами страниц
 	const pageNumbers = [...Array(pageCount + 1).keys()].slice(1);
 
-	const navigate = useNavigate();
+	// const navigate = useNavigate();
+	// const location = useLocation();
 
-	const [searchParamLimit, setSearchParamLimit] = useSearchParams();
-	const [searchParamOffset, setSearchParamOffset] = useSearchParams();
+	const [searchParams, setSearchParams] = useSearchParams();
 
 	function handlePaginationClick(event) {
 		setPageOffset((event.selected * cardsPerPage) % pageNumbers.length);
 		setIsSubmittedQuery(true);
 		setIsSubmittedTrends(true);
 		setPageCurrent(event.selected);
+		// navigate(`${location.search}&offset=${event.selected + 1}`, {
+		// 	replace: true,
+		// });
 	}
-
-	//console.log(searchParamLimit);
 
 	function handleChangeCardPerPage(event) {
 		setCardsPerPage(event.target.value);
 		setPageCurrent(0);
-		setIsSubmittedQuery(true);
+		if (searchParams.get('q')) {
+			setIsSubmittedQuery(true);
+		} else {
+			setPageCurrent(-1);
+		}
 		setIsSubmittedTrends(true);
-		//navigate(`?limit=${event.target.value}`, { replace: true });
+		// console.log(searchParams);
+		// console.log(searchParams.get('limit').delete);
+		//searchParams.delete('q');
+		// navigate(`${location.search}&limit=${event.target.value}`, {
+		// 	replace: true,
+		// });
+		//console.log(searchParams.delete('limit'));
+		//console.log(searchParams.delete(limit));
 	}
 
 	return (
@@ -95,9 +108,12 @@ function App() {
 					}
 				/>
 				<Route path="/random-gif" element={<RandomCard />} />
-				<Route path="/" element={<Navigate to="/search" replace={true} />} />
+				<Route
+					exact
+					path="/"
+					element={<Navigate to="/search" replace={true} />}
+				/>
 				<Route path="*" element={<NotFound />} />
-				{/* <Route path="*" element={<Navigate to="/search" />} /> */}
 			</Routes>
 
 			<Footer />
