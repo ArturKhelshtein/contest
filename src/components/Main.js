@@ -1,5 +1,5 @@
 import React from 'react';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import api from '../utils/api';
 import Search from './Search';
 import CardList from './CardList';
@@ -28,11 +28,9 @@ function Main({
 	const [isFailToolTipOpen, setIsFailToolTipOpen] = React.useState(false);
 	const navigate = useNavigate();
 
-	const params = useParams();
-
 	const [searchParams, setSearchParams] = useSearchParams();
 
-	console.log(searchParams.get('q'));
+	//console.log(searchParams.get('q'));
 
 	function handleFailToolTip() {
 		setIsFailToolTipOpen(true);
@@ -57,11 +55,7 @@ function Main({
 		return () => window.removeEventListener('keydown', close);
 	}, []);
 
-	//console.log(isSubmittedQuery);
-	//console.log(params.id);
-
 	React.useEffect(() => {
-		//		setQuery(searchQuery);
 		setIsSubmittedTrends(false);
 		if (isSubmittedQuery) {
 			api
@@ -100,9 +94,9 @@ function Main({
 
 	function handleSubmitSearch(event) {
 		event.preventDefault();
-		navigate(`?q=${searchQuery}`, { replace: true });
 		setPageOffset(0);
 		setIsSubmittedQuery(true);
+		navigate(`?q=${searchQuery}`, { replace: true });
 	}
 
 	return (

@@ -43,6 +43,19 @@ function QuantityCardPerPage({ handleChangeCardPerPage }) {
 			</div>
 			<div className="search__radio-container">
 				<input
+					id="radio-18"
+					type="radio"
+					name="quantity"
+					className="search__radio"
+					value={18}
+					onChange={handleChangeCardPerPage}
+				></input>
+				<label htmlFor="radio-18" className="search__label">
+					18
+				</label>
+			</div>
+			<div className="search__radio-container">
+				<input
 					id="radio-24"
 					type="radio"
 					name="quantity"

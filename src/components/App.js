@@ -2,9 +2,9 @@ import React from 'react';
 import {
 	Route,
 	Routes,
-	Navigate,
-	useParams,
+	useSearchParams,
 	useNavigate,
+	Navigate,
 } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
@@ -27,6 +27,9 @@ function App() {
 
 	const navigate = useNavigate();
 
+	const [searchParamLimit, setSearchParamLimit] = useSearchParams();
+	const [searchParamOffset, setSearchParamOffset] = useSearchParams();
+
 	function handlePaginationClick(event) {
 		setPageOffset((event.selected * cardsPerPage) % pageNumbers.length);
 		setIsSubmittedQuery(true);
@@ -34,11 +37,14 @@ function App() {
 		setPageCurrent(event.selected);
 	}
 
+	//console.log(searchParamLimit);
+
 	function handleChangeCardPerPage(event) {
 		setCardsPerPage(event.target.value);
 		setPageCurrent(0);
 		setIsSubmittedQuery(true);
 		setIsSubmittedTrends(true);
+		//navigate(`?limit=${event.target.value}`, { replace: true });
 	}
 
 	return (
@@ -89,7 +95,7 @@ function App() {
 					}
 				/>
 				<Route path="/random-gif" element={<RandomCard />} />
-				{/* <Route path="/" action={navigate('/search', { replace: true })} /> */}
+				<Route path="/" element={<Navigate to="/search" replace={true} />} />
 				<Route path="*" element={<NotFound />} />
 				{/* <Route path="*" element={<Navigate to="/search" />} /> */}
 			</Routes>
