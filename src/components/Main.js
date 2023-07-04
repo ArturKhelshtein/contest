@@ -55,6 +55,9 @@ function Main({
 
 	React.useEffect(() => {
 		setIsSubmittedTrends(false);
+		if(searchParams.get('q') === null) {
+			setPageCurrent(-1)
+		}
 		if (isSubmittedQuery && searchParams.get('q') !== null) {
 			api
 				.searchGif({
