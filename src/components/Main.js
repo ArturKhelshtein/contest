@@ -22,6 +22,7 @@ function Main({
 	pageCurrent,
 	setPageCurrent,
 	handleChangeCardPerPage,
+  isLight
 }) {
 	const [searchQuery, setSearchQuery] = React.useState('');
 	const [isFailToolTipOpen, setIsFailToolTipOpen] = React.useState(false);
@@ -107,6 +108,7 @@ function Main({
 				setSearchQuery={setSearchQuery}
 				handleSubmitSearch={handleSubmitSearch}
 				handleChangeCardPerPage={handleChangeCardPerPage}
+        isLight={isLight}
 			/>
 			<InfoToolTip
 				title={
