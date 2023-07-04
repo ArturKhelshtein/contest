@@ -31,4 +31,4 @@
 /random-gif - случайная гифка
 
 
-#https://arturkhelshtein.github.io/contest/
+# https://arturkhelshtein.github.io/contest/
