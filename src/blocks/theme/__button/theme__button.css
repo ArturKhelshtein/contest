@@ -1,4 +1,10 @@
 .theme__button {
-  background-color: #ccc;
-  border: none;
+	width: 30px;
+	height: 30px;
+	padding: 0;
+	border: none;
+	border-radius: 50%;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center;
 }
