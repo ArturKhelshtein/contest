@@ -2,9 +2,9 @@
 	width: 30px;
 	height: 30px;
 	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	border: none;
 	border-radius: 50%;
-	background-size: contain;
-	background-repeat: no-repeat;
-	background-position: center;
 }

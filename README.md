@@ -7,6 +7,8 @@
 старт 30.06.2023 20:00
 конец 04.07.2023 23:59
 
+# https://arturkhelshtein.github.io/contest/
+
 ## исходные данные
 
 - дизайн интерфейса на усмотрение проектировщиков
@@ -29,6 +31,3 @@
 /sarch - основная страница
 /trends - автопоиск по Трендам
 /random-gif - случайная гифка
-
-
-# https://arturkhelshtein.github.io/contest/
