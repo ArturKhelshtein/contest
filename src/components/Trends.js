@@ -16,6 +16,7 @@ function Trends({
 	handlePaginationClick,
 	pageOffset,
 	handleChangeCardPerPage,
+	isLight
 }) {
 	React.useEffect(() => {
 		setIsSubmittedQuery(false);
@@ -47,6 +48,7 @@ function Trends({
 			<Pagination
 				pageCount={pageCount}
 				handlePaginationClick={handlePaginationClick}
+				isLight={isLight}
 			/>
 		</main>
 	);

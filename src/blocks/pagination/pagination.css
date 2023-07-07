@@ -6,6 +6,7 @@
 	justify-content: center;
 	column-gap: 10px;
 	overflow: hidden;
+	color: #fff;
 }
 
 /* .pagination {

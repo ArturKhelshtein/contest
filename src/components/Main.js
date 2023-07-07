@@ -28,7 +28,7 @@ function Main({
 	const [isFailToolTipOpen, setIsFailToolTipOpen] = React.useState(false);
 	const navigate = useNavigate();
 
-	const [searchParams, setSearchParams] = useSearchParams();
+	const [searchParams] = useSearchParams();
 
 	function handleFailToolTip() {
 		setIsFailToolTipOpen(true);
@@ -130,6 +130,7 @@ function Main({
 				pageCount={pageCount}
 				handlePaginationClick={handlePaginationClick}
 				pageCurrent={pageCurrent}
+				isLight={isLight}
 			/>
 		</main>
 	);

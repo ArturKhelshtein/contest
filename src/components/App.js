@@ -3,9 +3,7 @@ import {
 	Route,
 	Routes,
 	useSearchParams,
-	useNavigate,
 	Navigate,
-	useLocation,
 } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
@@ -13,7 +11,6 @@ import Main from './Main';
 import Trends from './Trends';
 import RandomCard from './RandomCard';
 import NotFound from './NotFound';
-import ThemeToggle from './ThemeToggle';
 
 function App() {
 	const [cardList, setCardList] = React.useState([]);
@@ -26,9 +23,6 @@ function App() {
 	const [cardsPerPage, setCardsPerPage] = React.useState(12);
 	//массив со всеми номерами страниц
 	const pageNumbers = [...Array(pageCount + 1).keys()].slice(1);
-
-	const navigate = useNavigate();
-	const location = useLocation();
 
 	const [searchParams, setSearchParams] = useSearchParams();
 
@@ -79,7 +73,6 @@ function App() {
 						path="/search"
 						element={
 							<Main
-								isLight={isLight}
 								isSubmittedQuery={isSubmittedQuery}
 								setIsSubmittedTrends={setIsSubmittedTrends}
 								setIsSubmittedQuery={setIsSubmittedQuery}
@@ -94,6 +87,7 @@ function App() {
 								pageCurrent={pageCurrent}
 								setPageCurrent={setPageCurrent}
 								handleChangeCardPerPage={handleChangeCardPerPage}
+								isLight={isLight}
 							/>
 						}
 					/>
@@ -112,6 +106,7 @@ function App() {
 								handlePaginationClick={handlePaginationClick}
 								pageOffset={pageOffset}
 								handleChangeCardPerPage={handleChangeCardPerPage}
+								isLight={isLight}
 							/>
 						}
 					/>

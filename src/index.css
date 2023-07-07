@@ -47,6 +47,7 @@
 @import url(./blocks/popup/__close-button/popup__close-button.css);
 
 @import url(./blocks/pagination/pagination.css);
+@import url(./blocks/pagination/_theme/pagination_theme_light.css);
 @import url(./blocks/pagination/__element/pagination__element.css);
 @import url(./blocks/pagination/__element/pagination__element_selected.css);
 @import url(./blocks/pagination/__link/pagination__link.css);
