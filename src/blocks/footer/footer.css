@@ -1,16 +1,16 @@
 .footer {
-	display: flex;
-	justify-content: space-between;
-	align-items: end;
-	padding-left: 30px;
-	padding-right: 30px;
-	padding-bottom: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 40px;
 }
 
 @media (min-width: 1000px) {
-	.footer {
-		padding-left: 200px;
-		padding-right: 200px;
-		padding-bottom: 60px;
-	}
+  .footer {
+    padding-left: 200px;
+    padding-right: 200px;
+    padding-bottom: 60px;
+  }
 }

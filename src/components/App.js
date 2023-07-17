@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-	Route,
-	Routes,
-	useSearchParams,
-	Navigate,
-} from 'react-router-dom';
+import { Route, Routes, useSearchParams, Navigate } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import Main from './Main';
@@ -13,115 +8,115 @@ import RandomCard from './RandomCard';
 import NotFound from './NotFound';
 
 function App() {
-	const [cardList, setCardList] = React.useState([]);
-	const [isSubmittedQuery, setIsSubmittedQuery] = React.useState(false);
-	const [isSubmittedTrends, setIsSubmittedTrends] = React.useState(false);
+  const [cardList, setCardList] = React.useState([]);
+  const [isSubmittedQuery, setIsSubmittedQuery] = React.useState(false);
+  const [isSubmittedTrends, setIsSubmittedTrends] = React.useState(false);
 
-	const [pageCurrent, setPageCurrent] = React.useState(-1);
-	const [pageOffset, setPageOffset] = React.useState(0);
-	const [pageCount, setPageCount] = React.useState(0);
-	const [cardsPerPage, setCardsPerPage] = React.useState(12);
-	//массив со всеми номерами страниц
-	const pageNumbers = [...Array(pageCount + 1).keys()].slice(1);
+  const [pageCurrent, setPageCurrent] = React.useState(-1);
+  const [pageOffset, setPageOffset] = React.useState(0);
+  const [pageCount, setPageCount] = React.useState(0);
+  const [cardsPerPage, setCardsPerPage] = React.useState(12);
+  //массив со всеми номерами страниц
+  const pageNumbers = [...Array(pageCount + 1).keys()].slice(1);
 
-	const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
-	const [isLight, setIsLight] = React.useState(false);
+  const [isLight, setIsLight] = React.useState(false);
 
-	function handleChangeTheme() {
-		setIsLight(!isLight);
-	}
+  function handleChangeTheme() {
+    setIsLight(!isLight);
+  }
 
-	function handlePaginationClick(event) {
-		setPageOffset((event.selected * cardsPerPage) % pageNumbers.length);
-		setIsSubmittedQuery(true);
-		setIsSubmittedTrends(true);
-		setPageCurrent(event.selected);
-		// setSearchParams(`?q=${searchParams.getAll('q')}&offset=${event.selected + 1}`, {
-		// 	replace: true,
-		// })
-	}
+  function handlePaginationClick(event) {
+    setPageOffset((event.selected * cardsPerPage) % pageNumbers.length);
+    setIsSubmittedQuery(true);
+    setIsSubmittedTrends(true);
+    setPageCurrent(event.selected);
+    // setSearchParams(`?q=${searchParams.getAll('q')}&offset=${event.selected + 1}`, {
+    // 	replace: true,
+    // })
+  }
 
-	function handleChangeCardPerPage(event) {
-		setCardsPerPage(event.target.value);
-		setPageCurrent(0);
-		if (searchParams.get('q')) {
-			setIsSubmittedQuery(true);
-		} else {
-			setPageCurrent(0);
-		}
-		setIsSubmittedTrends(true);
-		setSearchParams(
-			`?q=${searchParams.getAll('q')}&limit=${event.target.value}`,
-			{
-				replace: true,
-			}
-		);
-	}
+  function handleChangeCardPerPage(event) {
+    setCardsPerPage(event.target.value);
+    setPageCurrent(0);
+    if (searchParams.get('q')) {
+      setIsSubmittedQuery(true);
+    } else {
+      setPageCurrent(0);
+    }
+    setIsSubmittedTrends(true);
+    setSearchParams(
+      `?q=${searchParams.getAll('q')}&limit=${event.target.value}`,
+      {
+        replace: true,
+      }
+    );
+  }
 
-	return (
-		<div className={`ground ${isLight ? `ground_theme_light` : ``}`}>
-			<div className="app">
-				<Header
-					isLight={isLight}
-					setCardList={setCardList}
-					setPageCount={setPageCount}
-					setPageOffset={setPageOffset}
-				/>
-				<Routes>
-					<Route
-						path="/search"
-						element={
-							<Main
-								isSubmittedQuery={isSubmittedQuery}
-								setIsSubmittedTrends={setIsSubmittedTrends}
-								setIsSubmittedQuery={setIsSubmittedQuery}
-								cardList={cardList}
-								setCardList={setCardList}
-								pageCount={pageCount}
-								setPageCount={setPageCount}
-								cardsPerPage={cardsPerPage}
-								handlePaginationClick={handlePaginationClick}
-								pageOffset={pageOffset}
-								setPageOffset={setPageOffset}
-								pageCurrent={pageCurrent}
-								setPageCurrent={setPageCurrent}
-								handleChangeCardPerPage={handleChangeCardPerPage}
-								isLight={isLight}
-							/>
-						}
-					/>
-					<Route
-						path="/trends"
-						element={
-							<Trends
-								isSubmittedTrends={isSubmittedTrends}
-								setIsSubmittedTrends={setIsSubmittedTrends}
-								setIsSubmittedQuery={setIsSubmittedQuery}
-								cardList={cardList}
-								setCardList={setCardList}
-								pageCount={pageCount}
-								setPageCount={setPageCount}
-								cardsPerPage={cardsPerPage}
-								handlePaginationClick={handlePaginationClick}
-								pageOffset={pageOffset}
-								handleChangeCardPerPage={handleChangeCardPerPage}
-								isLight={isLight}
-							/>
-						}
-					/>
-					<Route path="/random-gif" element={<RandomCard />} />
-					<Route
-						exact
-						path="/"
-						element={<Navigate to="/search" replace={true} />}
-					/>
-					<Route path="*" element={<NotFound />} />
-				</Routes>
-				<Footer handleChangeTheme={handleChangeTheme} />
-			</div>
-		</div>
-	);
+  return (
+    <div className={`ground ${isLight ? `ground_theme_light` : ``}`}>
+      <div className="app">
+        <Header
+          isLight={isLight}
+          setCardList={setCardList}
+          setPageCount={setPageCount}
+          setPageOffset={setPageOffset}
+        />
+        <Routes>
+          <Route
+            path="/search"
+            element={
+              <Main
+                isSubmittedQuery={isSubmittedQuery}
+                setIsSubmittedTrends={setIsSubmittedTrends}
+                setIsSubmittedQuery={setIsSubmittedQuery}
+                cardList={cardList}
+                setCardList={setCardList}
+                pageCount={pageCount}
+                setPageCount={setPageCount}
+                cardsPerPage={cardsPerPage}
+                handlePaginationClick={handlePaginationClick}
+                pageOffset={pageOffset}
+                setPageOffset={setPageOffset}
+                pageCurrent={pageCurrent}
+                setPageCurrent={setPageCurrent}
+                handleChangeCardPerPage={handleChangeCardPerPage}
+                isLight={isLight}
+              />
+            }
+          />
+          <Route
+            path="/trends"
+            element={
+              <Trends
+                isSubmittedTrends={isSubmittedTrends}
+                setIsSubmittedTrends={setIsSubmittedTrends}
+                setIsSubmittedQuery={setIsSubmittedQuery}
+                cardList={cardList}
+                setCardList={setCardList}
+                pageCount={pageCount}
+                setPageCount={setPageCount}
+                cardsPerPage={cardsPerPage}
+                handlePaginationClick={handlePaginationClick}
+                pageOffset={pageOffset}
+                handleChangeCardPerPage={handleChangeCardPerPage}
+                isLight={isLight}
+              />
+            }
+          />
+          <Route path="/random-gif" element={<RandomCard />} />
+          <Route
+            exact
+            path="/"
+            element={<Navigate to="/search" replace={true} />}
+          />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        <Footer handleChangeTheme={handleChangeTheme} />
+      </div>
+    </div>
+  );
 }
 
 export default App;

@@ -1,10 +1,10 @@
-function ImagePopup({card, onClose}) {
+function ImagePopup({ card, onClose }) {
   return (
     <div className={`popup image-popup ${card.link ? `popup_opened` : ``}`}>
       <div className="popup__image-container">
-        <button 
-          className="popup__close-button" 
-          type="button" 
+        <button
+          className="popup__close-button"
+          type="button"
           aria-label="Закрыть"
           onClick={onClose}
         />
@@ -14,7 +14,7 @@ function ImagePopup({card, onClose}) {
         </figure>
       </div>
     </div>
-  )
+  );
 }
 
 export default ImagePopup;

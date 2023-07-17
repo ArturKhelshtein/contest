@@ -1,17 +1,17 @@
 .navbar {
-	margin-left: 30px;
-	display: flex;
-	flex-direction: column;
-	align-self: flex-start;
-	align-items: start;
-	gap: 5px;
-	box-sizing: border-box;
+  margin-left: 30px;
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  align-items: start;
+  gap: 5px;
+  box-sizing: border-box;
 }
 
 @media (min-width: 360px) {
-	.navbar {
-		flex-direction: row;
-		align-self: center;
-		gap: 25px
-	}
+  .navbar {
+    flex-direction: row;
+    align-self: center;
+    gap: 25px;
+  }
 }

@@ -1,8 +1,8 @@
 .pagination__element {
-	list-style: none;
+  list-style: none;
 }
 
 .pagination__element:hover {
-	opacity: 0.6;
-	cursor: pointer;
+  opacity: 0.6;
+  cursor: pointer;
 }

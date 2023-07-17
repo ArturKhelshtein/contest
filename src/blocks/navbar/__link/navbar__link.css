@@ -1,19 +1,19 @@
 .navbar__link {
-	display: flex;
-	background-color: transparent;
-	border: none;
-	color: #fff;
-	font-size: 14px;
-	text-decoration: none;
+  display: flex;
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  text-decoration: none;
 }
 
 .navbar__link:hover {
-	opacity: 0.6;
-	cursor: pointer;
+  opacity: 0.6;
+  cursor: pointer;
 }
 
 @media (min-width: 600px) {
-	.navbar__link {
-		font-size: 18px;
-	}
+  .navbar__link {
+    font-size: 18px;
+  }
 }

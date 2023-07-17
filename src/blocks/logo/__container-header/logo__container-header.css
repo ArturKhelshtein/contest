@@ -1,16 +1,16 @@
 .logo__container-header {
-	padding-bottom: 5px;
-	width: 200px;
-	opacity: 1;
+  padding-bottom: 5px;
+  width: 200px;
+  opacity: 1;
 }
 
 .logo__container-header:hover {
-	opacity: 0.6;
-	cursor: pointer;
+  opacity: 0.6;
+  cursor: pointer;
 }
 
 @media (min-width: 600px) {
-	.logo__container-header {
-		padding-bottom: 10px;
-	}
+  .logo__container-header {
+    padding-bottom: 10px;
+  }
 }

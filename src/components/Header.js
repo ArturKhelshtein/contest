@@ -3,19 +3,19 @@ import logo from '../image/logo/logo.gif';
 import Navbar from './Navbar';
 
 function Header({ isLight, setCardList, setPageCount, setPageOffset }) {
-	return (
-		<header className="header">
-			<Link to="https://giphy.com/" className="logo__container-header">
-				<img className="logo__img" src={logo} alt="logo" />
-			</Link>
-			<Navbar
-				isLight={isLight}
-				setCardList={setCardList}
-				setPageCount={setPageCount}
-				setPageOffset={setPageOffset}
-			/>
-		</header>
-	);
+  return (
+    <header className="header">
+      <Link to="https://giphy.com/" className="logo__container-header">
+        <img className="logo__img" src={logo} alt="logo" />
+      </Link>
+      <Navbar
+        isLight={isLight}
+        setCardList={setCardList}
+        setPageCount={setPageCount}
+        setPageOffset={setPageOffset}
+      />
+    </header>
+  );
 }
 
 export default Header;

@@ -1,11 +1,11 @@
 .main {
-	margin: 0 30px 50px 30px;
-	display: flex;
-	flex-direction: column;
+  margin: 0 30px 50px 30px;
+  display: flex;
+  flex-direction: column;
 }
 
 @media (min-width: 1000px) {
-	.main {
-		margin: 0 200px 70px 200px;
-	}
+  .main {
+    margin: 0 200px 70px 200px;
+  }
 }

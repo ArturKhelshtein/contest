@@ -1,14 +1,14 @@
 .search {
-	min-height: 40px;
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	grid-template-rows: 1fr 1fr;
-	gap: 10px;
-	box-sizing: border-box;
+  min-height: 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+  box-sizing: border-box;
 }
 
 @media (min-width: 360px) {
-	.search {
-		grid-template-columns: 1fr 40px 40px;
-	}
+  .search {
+    grid-template-columns: 1fr 40px 40px;
+  }
 }
