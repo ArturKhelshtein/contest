@@ -42,16 +42,6 @@ class Api {
       headers: this.headers,
     });
   }
-
-  // notFoundGif() {
-  // 	return this._request(
-  // 		// return this._request(
-  // 		`/v1/gifs/8L0Pky6C83SzkzU55a?api_key=${this._api_key}&rating=g`,
-  // 		{
-  // 			method: 'GET',
-  // 			headers: this.headers,
-  // 		}
-  // 	);
 }
 
 const api = new Api({

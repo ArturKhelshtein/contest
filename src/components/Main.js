@@ -53,12 +53,8 @@ function Main({
     return () => window.removeEventListener('keydown', close);
   }, []);
 
-  React.useEffect(() => {
-    setIsSubmittedTrends(false);
-    if (searchParams.get('q') === null) {
-      setPageCurrent(-1);
-    }
-    if (isSubmittedQuery && searchParams.get('q') !== null) {
+  function handleSearchGif() {
+    if (searchParams.get('q') !== null) {
       api
         .searchGif({
           query: searchParams.get('q'),
@@ -94,6 +90,18 @@ function Main({
           setIsSubmittedQuery(false);
           setSearchQuery('');
         });
+    }
+  }
+
+  React.useEffect(() => handleSearchGif(), []);
+
+  React.useEffect(() => {
+    setIsSubmittedTrends(false);
+    if (searchParams.get('q') === null) {
+      setPageCurrent(-1);
+    }
+    if (isSubmittedQuery) {
+      handleSearchGif();
     }
   }, [isSubmittedQuery, cardsPerPage, searchParams]);
 

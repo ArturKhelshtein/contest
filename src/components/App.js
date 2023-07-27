@@ -32,9 +32,6 @@ function App() {
     setIsSubmittedQuery(true);
     setIsSubmittedTrends(true);
     setPageCurrent(event.selected);
-    // setSearchParams(`?q=${searchParams.getAll('q')}&offset=${event.selected + 1}`, {
-    // 	replace: true,
-    // })
   }
 
   function handleChangeCardPerPage(event) {
