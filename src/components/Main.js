@@ -114,6 +114,16 @@ function Main({
 
   return (
     <main className="main">
+			<InfoToolTip
+				title={
+					<>
+						<p className="popup__text">Упс... ничего нет!</p>
+					</>
+				}
+				toolTipImg={Fail}
+				isOpen={isFailToolTipOpen}
+				onClose={handleCloseInfoToolTip}
+			/>
       <Search
         placeholder="Найдем GIF !!!"
         searchQuery={searchQuery}
@@ -121,18 +131,7 @@ function Main({
         handleSubmitSearch={handleSubmitSearch}
         handleChangeCardPerPage={handleChangeCardPerPage}
       />
-      <InfoToolTip
-        title={
-          <>
-            <p className="popup__text">Упс... ничего нет!</p>
-          </>
-        }
-        toolTipImg={Fail}
-        isOpen={isFailToolTipOpen}
-        onClose={handleCloseInfoToolTip}
-      />
       <CardList isSubmitted={isSubmittedQuery} cardList={cardList} />
-
       <Pagination
         pageCount={pageCount}
         handlePaginationClick={handlePaginationClick}
