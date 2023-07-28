@@ -22,7 +22,6 @@ function Main({
   pageCurrent,
   setPageCurrent,
   handleChangeCardPerPage,
-  isLight,
 }) {
   const [searchQuery, setSearchQuery] = React.useState('');
   const [isFailToolTipOpen, setIsFailToolTipOpen] = React.useState(false);
@@ -55,6 +54,7 @@ function Main({
 
   function handleSearchGif() {
     if (searchParams.get('q') !== null) {
+			console.log(searchParams)
       api
         .searchGif({
           query: searchParams.get('q'),
@@ -120,7 +120,6 @@ function Main({
         setSearchQuery={setSearchQuery}
         handleSubmitSearch={handleSubmitSearch}
         handleChangeCardPerPage={handleChangeCardPerPage}
-        isLight={isLight}
       />
       <InfoToolTip
         title={
@@ -138,7 +137,6 @@ function Main({
         pageCount={pageCount}
         handlePaginationClick={handlePaginationClick}
         pageCurrent={pageCurrent}
-        isLight={isLight}
       />
     </main>
   );

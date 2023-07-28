@@ -7,6 +7,8 @@ import Trends from './Trends';
 import RandomCard from './RandomCard';
 import NotFound from './NotFound';
 
+export const ThemeContext = React.createContext('dark');
+
 function App() {
   const [cardList, setCardList] = React.useState([]);
   const [isSubmittedQuery, setIsSubmittedQuery] = React.useState(false);
@@ -21,10 +23,10 @@ function App() {
 
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const [isLight, setIsLight] = React.useState(false);
+	const [theme, setTheme] = React.useState('dark');
 
   function handleChangeTheme() {
-    setIsLight(!isLight);
+		return theme === 'dark' ? setTheme('light') : setTheme('dark')
   }
 
   function handlePaginationClick(event) {
@@ -52,67 +54,66 @@ function App() {
   }
 
   return (
-    <div className={`ground ${isLight ? `ground_theme_light` : ``}`}>
-      <div className="app">
-        <Header
-          isLight={isLight}
-          setCardList={setCardList}
-          setPageCount={setPageCount}
-          setPageOffset={setPageOffset}
-        />
-        <Routes>
-          <Route
-            path="/search"
-            element={
-              <Main
-                isSubmittedQuery={isSubmittedQuery}
-                setIsSubmittedTrends={setIsSubmittedTrends}
-                setIsSubmittedQuery={setIsSubmittedQuery}
-                cardList={cardList}
-                setCardList={setCardList}
-                pageCount={pageCount}
-                setPageCount={setPageCount}
-                cardsPerPage={cardsPerPage}
-                handlePaginationClick={handlePaginationClick}
-                pageOffset={pageOffset}
-                setPageOffset={setPageOffset}
-                pageCurrent={pageCurrent}
-                setPageCurrent={setPageCurrent}
-                handleChangeCardPerPage={handleChangeCardPerPage}
-                isLight={isLight}
-              />
-            }
+    <ThemeContext.Provider value={theme}>
+      <div className={`ground ${theme === 'light' ? `ground_theme_light` : ``}`}>
+        <div className="app">
+          <Header
+            setCardList={setCardList}
+            setPageCount={setPageCount}
+            setPageOffset={setPageOffset}
           />
-          <Route
-            path="/trends"
-            element={
-              <Trends
-                isSubmittedTrends={isSubmittedTrends}
-                setIsSubmittedTrends={setIsSubmittedTrends}
-                setIsSubmittedQuery={setIsSubmittedQuery}
-                cardList={cardList}
-                setCardList={setCardList}
-                pageCount={pageCount}
-                setPageCount={setPageCount}
-                cardsPerPage={cardsPerPage}
-                handlePaginationClick={handlePaginationClick}
-                pageOffset={pageOffset}
-                handleChangeCardPerPage={handleChangeCardPerPage}
-                isLight={isLight}
-              />
-            }
-          />
-          <Route path="/random-gif" element={<RandomCard />} />
-          <Route
-            exact
-            path="/"
-            element={<Navigate to="/search" replace={true} />}
-          />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <Footer handleChangeTheme={handleChangeTheme} />
+          <Routes>
+            <Route
+              path="/search"
+              element={
+                <Main
+                  isSubmittedQuery={isSubmittedQuery}
+                  setIsSubmittedTrends={setIsSubmittedTrends}
+                  setIsSubmittedQuery={setIsSubmittedQuery}
+                  cardList={cardList}
+                  setCardList={setCardList}
+                  pageCount={pageCount}
+                  setPageCount={setPageCount}
+                  cardsPerPage={cardsPerPage}
+                  handlePaginationClick={handlePaginationClick}
+                  pageOffset={pageOffset}
+                  setPageOffset={setPageOffset}
+                  pageCurrent={pageCurrent}
+                  setPageCurrent={setPageCurrent}
+                  handleChangeCardPerPage={handleChangeCardPerPage}
+                />
+              }
+            />
+            <Route
+              path="/trends"
+              element={
+                <Trends
+                  isSubmittedTrends={isSubmittedTrends}
+                  setIsSubmittedTrends={setIsSubmittedTrends}
+                  setIsSubmittedQuery={setIsSubmittedQuery}
+                  cardList={cardList}
+                  setCardList={setCardList}
+                  pageCount={pageCount}
+                  setPageCount={setPageCount}
+                  cardsPerPage={cardsPerPage}
+                  handlePaginationClick={handlePaginationClick}
+                  pageOffset={pageOffset}
+                  handleChangeCardPerPage={handleChangeCardPerPage}
+                />
+              }
+            />
+            <Route path="/random-gif" element={<RandomCard />} />
+            <Route
+              exact
+              path="/"
+              element={<Navigate to="/search" replace={true} />}
+            />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <Footer handleChangeTheme={ handleChangeTheme } />
+        </div>
       </div>
-    </div>
+    </ThemeContext.Provider>
   );
 }
 

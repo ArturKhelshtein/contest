@@ -1,11 +1,15 @@
 import ReactPaginate from 'react-paginate';
+import { useContext } from 'react';
+
+import { ThemeContext } from './App'
 
 function Pagination({
   pageCount,
   handlePaginationClick,
   pageCurrent,
-  isLight,
 }) {
+	const theme = useContext(ThemeContext);
+
   return (
     <ReactPaginate
       pageCount={pageCount}
@@ -15,7 +19,7 @@ function Pagination({
       onPageChange={handlePaginationClick}
       pageRangeDisplayed={5}
       renderOnZeroPageCount={null}
-      className={`pagination ${isLight ? `pagination_theme_light` : ``}`}
+      className={`pagination ${theme === 'light' ? `pagination_theme_light` : ``}`}
       previousClassName="pagination__element"
       pageClassName="pagination__element"
       breakClassName="pagination__element"

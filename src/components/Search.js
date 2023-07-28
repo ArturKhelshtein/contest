@@ -1,4 +1,7 @@
+import { useContext } from 'react';
+
 import QuantityCardPerPage from './QuantityCardPerPage';
+import { ThemeContext } from './App'
 
 function Search({
   placeholder,
@@ -6,8 +9,9 @@ function Search({
   setSearchQuery,
   handleSubmitSearch,
   handleChangeCardPerPage,
-  isLight,
 }) {
+	const theme = useContext(ThemeContext);
+
   function handleInputReset() {
     setSearchQuery('');
   }
@@ -15,7 +19,7 @@ function Search({
     <form className="search" onSubmit={handleSubmitSearch}>
       <input
         className={`search__input ${
-          isLight ? `search__input_theme_light` : ``
+          theme === 'light' ? `search__input_theme_light` : ``
         }`}
         type="text"
         name="search"

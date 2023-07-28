@@ -9,7 +9,7 @@ function Footer({ handleChangeTheme }) {
         © {date.getFullYear()} Contest project by Artur Khelshtein & Anastasiya
         Pashkova
       </p>
-      <ThemeToggle handleChangeTheme={handleChangeTheme} />
+      <ThemeToggle handleChangeTheme={ handleChangeTheme } />
     </footer>
   );
 }

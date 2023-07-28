@@ -1,10 +1,13 @@
-import React from 'react';
+import { useContext, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-function Navbar({ isLight, setCardList, setPageCount, setPageOffset }) {
-  const location = useLocation();
+import { ThemeContext } from './App'
 
-  React.useEffect(() => {
+function Navbar({ setCardList, setPageCount, setPageOffset }) {
+  const location = useLocation();
+	const theme = useContext(ThemeContext);
+
+  useEffect(() => {
     setCardList([]);
     setPageCount(0);
     setPageOffset(0);
@@ -16,10 +19,10 @@ function Navbar({ isLight, setCardList, setPageCount, setPageOffset }) {
         to="/search"
         className={`navbar__link ${
           location.pathname === '/search'
-            ? isLight
+            ? theme === 'light'
               ? `navbar__link_selected_theme_light navbar__link_theme_light`
               : 'navbar__link_selected'
-            : isLight
+            : theme === 'light'
             ? 'navbar__link_theme_light'
             : ''
         } `}
@@ -30,10 +33,10 @@ function Navbar({ isLight, setCardList, setPageCount, setPageOffset }) {
         to="/trends"
         className={`navbar__link ${
           location.pathname === '/trends'
-            ? isLight
+            ? theme === 'light'
               ? `navbar__link_selected_theme_light navbar__link_theme_light`
               : 'navbar__link_selected'
-            : isLight
+            : theme === 'light'
             ? 'navbar__link_theme_light'
             : ''
         } `}
@@ -44,10 +47,10 @@ function Navbar({ isLight, setCardList, setPageCount, setPageOffset }) {
         to="/random-gif"
         className={`navbar__link ${
           location.pathname === '/random-gif'
-            ? isLight
+            ? theme === 'light'
               ? `navbar__link_selected_theme_light navbar__link_theme_light`
               : 'navbar__link_selected'
-            : isLight
+            : theme === 'light'
             ? 'navbar__link_theme_light'
             : ''
         } `}
